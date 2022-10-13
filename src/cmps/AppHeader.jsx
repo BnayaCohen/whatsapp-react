@@ -6,9 +6,8 @@ export function AppHeader() {
       <section className="container flex space-between align-center">
         <div className="logo"></div>
         <nav className="flex">
-          <NavLink to='/' >Home</NavLink>
+          <NavLink to='/'>Home</NavLink>
           <NavLink to='/item'>Items</NavLink>
-          <NavLink to='/statistics'>Statistics</NavLink>
         </nav>
       </section>
     </header>

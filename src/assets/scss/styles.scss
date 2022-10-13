@@ -16,18 +16,15 @@
 // Pages
 @import "pages/home-page";
 @import "pages/item-page";
-@import "pages/statistic-page";
 @import "pages/item-edit";
 @import "pages/item-details";
-@import "pages/signup";
+// @import "pages/signup";
 
 // Components
 @import "cmps/item-list";
 @import "cmps/item-preview";
 @import "cmps/item-filter";
 @import "cmps/app-header";
-@import "cmps/transfer-fund";
-@import "cmps/moves-list";
 
 .main-app {
     min-height: 100vh;

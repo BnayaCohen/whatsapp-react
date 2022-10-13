@@ -41,10 +41,6 @@ export function ItemEdit() {
             <form onSubmit={onSaveItem}>
                 <label htmlFor="name">Name</label>
                 <input ref={inputRefFunc} value={item.name} onChange={handleChange} type="text" name="name" id="name" />
-                <label htmlFor="email">Email</label>
-                <input value={item.email} onChange={handleChange} type="email" name="email" id="email" />
-                <label htmlFor="phone">Phone</label>
-                <input value={item.phone} onChange={handleChange} type="text" name="phone" id="phone" />
                 <button className='btn'>Save</button>
             </form>
         </section>

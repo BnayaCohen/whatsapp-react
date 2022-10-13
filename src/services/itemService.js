@@ -27,18 +27,6 @@ const items = [
     },
 ]
 
-function sort(arr) {
-    return arr.sort((a, b) => {
-        if (a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()) {
-            return -1;
-        }
-        if (a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()) {
-            return 1;
-        }
-        return 0;
-    })
-}
-
 function getItems(filterBy = null) {
     return new Promise((resolve, reject) => {
         var itemsToReturn = items;
@@ -96,17 +84,6 @@ function getEmptyItem() {
         phone: ''
     }
 }
-
-function filter(term) {
-    term = term.toLocaleLowerCase()
-    return items.filter(item => {
-        return item.name.toLocaleLowerCase().includes(term) ||
-            item.phone.toLocaleLowerCase().includes(term) ||
-            item.email.toLocaleLowerCase().includes(term)
-    })
-}
-
-
 
 function _makeId(length = 10) {
     var txt = ''

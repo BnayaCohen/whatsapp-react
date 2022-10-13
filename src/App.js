@@ -4,10 +4,9 @@ import './assets/scss/styles.scss'
 import { AppHeader } from './cmps/AppHeader';
 // import { SignupPage } from './pages/SignupPage';
 import { HomePage } from './pages/HomePage';
-import { itemPage } from './pages/itemPage';
-import { itemDetailsPage } from './pages/itemDetailsPage';
-import { itemEdit } from './pages/itemEdit';
-import { StatisticPage } from './pages/StatisticPage';
+import { ItemApp } from './pages/itemApp';
+import { ItemDetailsPage } from './pages/itemDetailsPage';
+import { ItemEdit } from './pages/itemEdit';
 
 const PrivateRoute = ({children}) => {
     const isAdmin = true
@@ -25,15 +24,14 @@ function App() {
                     <Routes>
                         <Route path='/' element={<HomePage />} />
                         <Route path='/signup' element={<SignupPage />} />
-                        <Route path='/item/edit/:id' element={<itemEdit />} />
-                        <Route path='/item/edit/' element={<itemEdit />} />
+                        <Route path='/item/edit/:id' element={<ItemEdit />} />
+                        <Route path='/item/edit/' element={<ItemEdit />} />
                         <Route path='/item/:id' element={
                         <PrivateRoute>
-                            <itemDetailsPage />
+                            <ItemDetailsPage />
                         </PrivateRoute>
                         } />
-                        <Route path='/item' element={<itemPage />} />
-                        <Route path='/statistics' element={<StatisticPage />} />
+                        <Route path='/item' element={<ItemApp />} />
                     </Routes>
                 </main>
 
