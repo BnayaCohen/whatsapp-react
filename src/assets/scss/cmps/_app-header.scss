@@ -1,0 +1,31 @@
+.app-header {
+  background-color: #F7931A;
+  width: 100%;
+  background: url(https://bitcoin.org/img/hero/overview-tablet.svg?1528322191) top;
+  border-bottom: 1px solid #F7931A;
+  
+  .logo {
+    background-image: url(https://bitcoin.org/img/icons/logotop.svg?1657703267);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: #ffffff98;
+    height: 32px;
+    width: 122px;
+    border-radius: 8px;
+  }
+
+  nav {
+    background-color: #ffffff93;
+
+    a {
+      margin-inline-start: 16px;
+      font-weight: 600;
+      font-size: 1.3rem;
+
+      &:hover {
+        color: #F7931A;
+      }
+    }
+  }
+}

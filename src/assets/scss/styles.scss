@@ -1,0 +1,46 @@
+// Externals
+
+// Setup
+@import "setup/variables";
+@import "setup/functions";
+@import "setup/mixins";
+
+// Basics
+@import "basics/typography";
+@import "basics/base";
+@import "basics/helpers";
+@import "basics/layout";
+@import "basics/modals";
+@import "basics/animations";
+
+// Pages
+@import "pages/home-page";
+@import "pages/item-page";
+@import "pages/statistic-page";
+@import "pages/item-edit";
+@import "pages/item-details";
+@import "pages/signup";
+
+// Components
+@import "cmps/item-list";
+@import "cmps/item-preview";
+@import "cmps/item-filter";
+@import "cmps/app-header";
+@import "cmps/transfer-fund";
+@import "cmps/moves-list";
+
+.main-app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    main {
+        flex-grow: 1;
+    }
+
+    >footer {
+        text-align: center;
+        background: url(https://bitcoin.org/img/hero/overview-tablet.svg?1528322191) bottom;
+        color: #9D9D9D;
+    }
+}

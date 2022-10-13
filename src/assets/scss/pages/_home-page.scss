@@ -1,0 +1,15 @@
+.home-page {
+  text-align: center;
+  margin: 0;
+  background: url(https://bitcoin.org/img/hero/footer-bg.svg?1528322191)cover;
+
+  >h1 {
+    font-weight: 800;
+    margin-bottom: 8px;
+    font-size: 2rem;
+  }
+
+  button{
+    padding: 4px 22px 6px;
+  }
+}

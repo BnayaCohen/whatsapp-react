@@ -1,0 +1,22 @@
+.item-edit {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    input {
+      text-align: left;
+      width: 230px;
+      border-radius: 5px;
+      outline: #F7931A;
+      background-color: #00000009;
+      border: 1px solid #F7931A;
+      padding: 5px 8px;
+      margin-bottom: 8px;
+
+      &:focus {
+        border: 1px solid #b06810;
+      }
+    }
+  }
+}
