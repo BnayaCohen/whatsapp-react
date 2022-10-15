@@ -10,7 +10,6 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: 'Titillium Web', sans-serif;
   // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
   //   "Droid Sans", "Helvetica Neue", sans-serif;
   // -webkit-font-smoothing: antialiased;
@@ -43,22 +42,9 @@ a {
 }
 
 .btn {
-  font-family: inherit;
-  cursor: pointer;
-  display: inline-block;
-  padding: 12px 18px;
-  font-weight: 600;
-  font-size: .8em;
-  color: #fff;
-  border: none;
-  background: #FF9500;
-  border-radius: 2px;
-  letter-spacing: 1.5px;
-  margin: 4px;
 
   &:hover {
     text-decoration: none;
-    background: #F9A136;
   }
 
   * {
@@ -72,13 +58,13 @@ input {
   text-align: left;
   width: 230px;
   border-radius: 5px;
-  outline: #F7931A;
+  outline: #fff;
   background-color: #00000009;
-  border: 1px solid #F7931A;
+  border: 1px solid #fff;
   padding: 5px 8px;
 
   &:focus {
-    border: 1px solid #b06810;
+    border: 1px solid rgb(158, 158, 158);
   }
 }
 

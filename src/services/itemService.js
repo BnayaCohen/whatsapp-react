@@ -29,11 +29,7 @@ const items = [
 
 function getItems(filterBy = null) {
     return new Promise((resolve, reject) => {
-        var itemsToReturn = items;
-        if (filterBy && filterBy.term) {
-            itemsToReturn = filter(filterBy.term)
-        }
-        resolve(sort(itemsToReturn))
+        resolve(items)
     })
 }
 

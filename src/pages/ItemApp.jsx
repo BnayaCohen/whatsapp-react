@@ -5,7 +5,7 @@ import { ItemFilter } from '../cmps/ItemFilter'
 import { ItemList } from '../cmps/ItemList'
 import { loadItems, removeItem, setFilterBy } from '../store/actions/itemActions'
 
-export function ItemPage() {
+export function ItemApp() {
 
     const items = useSelector(state => state.itemModule.items)
     const dispatch = useDispatch()
@@ -25,7 +25,7 @@ export function ItemPage() {
 
     if (!items) return <div>Loading...</div>
     return (
-        <div className='item-page'>
+        <div className='item-app'>
             <ItemFilter onChangeFilter={onChangeFilter} />
             <Link className='btn' to="/item/edit">Add Item</Link>
             <ItemList onRemoveItem={onRemoveItem} items={items} />

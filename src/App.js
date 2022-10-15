@@ -4,11 +4,11 @@ import './assets/scss/styles.scss'
 import { AppHeader } from './cmps/AppHeader';
 // import { SignupPage } from './pages/SignupPage';
 import { HomePage } from './pages/HomePage';
-import { ItemApp } from './pages/itemApp';
-import { ItemDetailsPage } from './pages/itemDetailsPage';
-import { ItemEdit } from './pages/itemEdit';
+import { ItemApp } from './pages/ItemApp';
+import { ItemDetailsPage } from './pages/ItemDetailsPage';
+import { ItemEdit } from './pages/ItemEdit';
 
-const PrivateRoute = ({children}) => {
+const PrivateRoute = ({ children }) => {
     const isAdmin = true
     // return isAdmin ? <Route path={props.path} component={props.component} /> : <Redirect to='/' />
     return isAdmin ? children : <Navigate to='/' />
@@ -23,13 +23,13 @@ function App() {
                 <main className='container'>
                     <Routes>
                         <Route path='/' element={<HomePage />} />
-                        <Route path='/signup' element={<SignupPage />} />
+                        {/* <Route path='/signup' element={<SignupPage />} /> */}
                         <Route path='/item/edit/:id' element={<ItemEdit />} />
                         <Route path='/item/edit/' element={<ItemEdit />} />
                         <Route path='/item/:id' element={
-                        <PrivateRoute>
-                            <ItemDetailsPage />
-                        </PrivateRoute>
+                            <PrivateRoute>
+                                <ItemDetailsPage />
+                            </PrivateRoute>
                         } />
                         <Route path='/item' element={<ItemApp />} />
                     </Routes>

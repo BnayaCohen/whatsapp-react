@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { bitcoinService } from '../services/bitcoinService.js'
-import { MovesList } from '../cmps/MovesList';
 import { loadUser, logout } from '../store/actions/userActions'
 
 export function HomePage() {

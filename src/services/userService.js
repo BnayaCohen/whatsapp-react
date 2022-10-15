@@ -7,7 +7,6 @@ function getUser() {
   if (user) return user
   else user = {
     name: "Dea Folt",
-    coins: 200,
   }
   storageService.store(USER_KEY, user)
   return user
@@ -16,7 +15,6 @@ function getUser() {
 function signup(name) {
   const user = {
     name,
-    coins: 200,
   }
   storageService.store(USER_KEY, user)
   return user
