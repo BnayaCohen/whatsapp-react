@@ -22,7 +22,7 @@ function App() {
 
                 <main className='container'>
                     <Routes>
-                        <Route path='/' element={<HomePage />} />
+                        <Route path='/' element={<ItemApp />} />
                         {/* <Route path='/signup' element={<SignupPage />} /> */}
                         <Route path='/item/edit/:id' element={<ItemEdit />} />
                         <Route path='/item/edit/' element={<ItemEdit />} />
@@ -31,7 +31,6 @@ function App() {
                                 <ItemDetailsPage />
                             </PrivateRoute>
                         } />
-                        <Route path='/item' element={<ItemApp />} />
                     </Routes>
                 </main>
 
