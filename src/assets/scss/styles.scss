@@ -15,15 +15,15 @@
 
 // Pages
 @import "pages/home-page";
-@import "pages/item-app";
-@import "pages/item-edit";
-@import "pages/item-details";
+@import "pages/chat-app";
+@import "pages/chat-edit";
+@import "pages/chat-details";
 // @import "pages/signup";
 
 // Components
-@import "cmps/item-list";
-@import "cmps/item-preview";
-@import "cmps/item-filter";
+@import "cmps/chat-list";
+@import "cmps/chat-preview";
+@import "cmps/chat-filter";
 @import "cmps/app-header";
 
 .main-app {

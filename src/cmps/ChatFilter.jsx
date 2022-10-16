@@ -1,6 +1,6 @@
 import { Component } from 'react'
 
-export class ItemFilter extends Component {
+export class ChatFilter extends Component {
 
   state = {
     term: '',
@@ -17,7 +17,7 @@ export class ItemFilter extends Component {
   render() {
     const { term } = this.state
     return (
-      <form className='item-filter'>
+      <form className='chat-filter'>
         <input value={term} onChange={this.handleChange} type="text" name="term" placeholder='Search'/>
       </form>
     )

@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { loadUser, logout } from '../store/actions/userActions'
 
 export function HomePage() {
-  // const [item, setItem] = useState([])
+  // const [chat, setChat] = useState([])
   const user = useSelector(state => state.userModule.loggedInUser)
   const dispatch = useDispatch()
   const navigate = useNavigate()
