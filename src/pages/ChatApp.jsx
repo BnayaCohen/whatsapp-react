@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { ChatFilter } from '../cmps/ChatFilter'
 import { ChatList } from '../cmps/ChatList'
 import { loadChats, removeChat, setFilterBy } from '../store/actions/chatActions'
@@ -30,13 +30,8 @@ export function ChatApp() {
                 <ChatList onRemoveChat={onRemoveChat} chats={chats} />
             </section>
             <section className='chat-details'>
-                <div>chat!</div>
+                <Outlet />
             </section>
-
-
-
-
-
 
             {/* <ChatFilter onChangeFilter={onChangeFilter} /> */}
             {/* <Link className='btn' to="/chat/edit">Add Chat</Link> */}

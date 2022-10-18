@@ -1,25 +1,25 @@
 .container {
-    max-width: $normal-breakpoint;
+    // max-width: $normal-breakpoint;
     margin: 0 auto;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding: 20px;
-
-
+    
     @include for-mobile-layout {
-        max-width: initial;
+        // max-width: initial;
+        padding: 0;
     }
-
-    @include for-tablet-layout {
-        max-width: $mobile-breakpoint;
-    }
-
-    @include for-normal-layout {
-        max-width: $tablet-breakpoint;
-    }
-
+    
+    // @include for-tablet-layout {
+    //     max-width: $mobile-breakpoint;
+    //     padding: 0;
+    // }
+    
+    // @include for-normal-layout {
+    //     max-width: $tablet-breakpoint;
+    //     padding: 0;
+    // }
+    
     @include for-wide-layout {
-        max-width: $normal-breakpoint;
+        padding: 20px;
+        min-width: $wide-breakpoint;
     }
 }
 

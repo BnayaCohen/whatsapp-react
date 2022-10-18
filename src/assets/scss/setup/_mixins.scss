@@ -37,7 +37,7 @@
 }
 
 @mixin for-wide-layout {
-    @media (max-width: $wide-breakpoint) {
+    @media (min-width: $wide-breakpoint) {
         @content;
     }
 }

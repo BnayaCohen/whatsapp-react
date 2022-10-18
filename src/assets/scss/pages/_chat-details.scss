@@ -1,5 +1,21 @@
 .chat-details {
-  text-align: center;
+  background-color: white;
+  width: 100%;
+
+  .chat-header {
+    padding: 12px;
+
+    .user-img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: top left;
+      margin-top: -8px;
+      margin-left: -8px;
+    }
+  }
 
   img {
     margin-top: -22px;
