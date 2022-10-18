@@ -1,10 +1,12 @@
 .chat-details {
-  background-color: white;
+  background-color: rgb(220, 205, 169);
   width: 100%;
-
+  height: 100%;
+  
   .chat-header {
     padding: 12px;
-
+    background-color: #eaeaea;
+    
     .user-img {
       height: 40px;
       width: 40px;
@@ -16,18 +18,19 @@
       margin-left: -8px;
     }
   }
-
-  img {
-    margin-top: -22px;
+  
+  .chat-messages {
+    padding: 12px;
+    flex-grow: 1;
   }
+  
+  .chat-inputs{
+    height: 50px;
+    background-color: #eaeaea;
+    padding: 12px;
 
-  h1,
-  span {
-    font-weight: 600;
-  }
-
-  button {
-    margin-top: 14px;
-
+    input{
+      height: 30px;
+    }
   }
 }

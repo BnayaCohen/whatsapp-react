@@ -35,11 +35,11 @@ function App() {
                     </Routes>
                 </main>
 
-                <footer>
+                {/* <footer>
                     <section className='container'>
                         coffeeRights 2022 &copy;
                     </section>
-                </footer>
+                </footer> */}
             </div>
         </Router>
     )
