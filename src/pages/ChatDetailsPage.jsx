@@ -27,7 +27,6 @@ export function ChatDetailsPage() {
   const chatUser = userService.getUserById(currChat.userId)
   const chatUserStyle = { backgroundImage: `url(https://robohash.org/${currChat.userId})` }
   return (
-    <>
       <article className='chat-details flex column space-between'>
         <section className='chat-header flex'>
           <div className="user-img" style={chatUserStyle}></div>
@@ -42,12 +41,11 @@ export function ChatDetailsPage() {
         <section className='chat-inputs flex align-center'>
           <input type="text" />
           <button className='send-msg-btn'>
-          <img src={sendMsgIcon} alt="Send" />
+          <img src="imgs/sendMsgIcon.svg" alt="Send" />
           </button>
         </section>
         {/* <button className='btn' onClick={onBack}>Back</button> */}
         {/* <Link className='btn' to={'/chat/edit/' + currChat._id} >Edit chat</Link> */}
       </article>
-    </>
   )
 }
