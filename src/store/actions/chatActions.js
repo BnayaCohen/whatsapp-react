@@ -39,6 +39,19 @@ export function removeChat(chatId) {
     }
 }
 
+export function addMessage(chat, msg) {
+
+    return async (dispatch) => {
+        try {
+            chat.msgs.unshift(msg)
+            dispatch({ type: 'UPDATE_CHAT', chat })
+            // dispatch({ type: 'SET_CHAT', chat })
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
+
 export function setFilterBy(filterBy) {
 
     return (dispatch) => {
