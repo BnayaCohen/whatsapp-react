@@ -43,7 +43,7 @@ export function addMessage(chat, msg) {
 
     return async (dispatch) => {
         try {
-            chat.msgs.unshift(msg)
+            chat.msgs.push(msg)
             dispatch({ type: 'UPDATE_CHAT', chat })
             // dispatch({ type: 'SET_CHAT', chat })
         } catch (err) {

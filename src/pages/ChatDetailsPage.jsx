@@ -11,7 +11,7 @@ export function ChatDetailsPage() {
 
   const [msgInput, setMsgInput] = useState('')
   const currUser = useSelector(state => state.userModule.loggedInUser)
-  const currChat = useSelector(state => state.chatModule.currChat)
+  const currChat = useSelector((state => state.chatModule.currChat))
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const params = useParams()
@@ -25,7 +25,10 @@ export function ChatDetailsPage() {
   }
 
   const addMsg = () => {
-    dispatch(addMessage(currChat, { content: msgInput, sentAt: Date.now(), isUserSent: true }))
+    if (!msgInput) return
+    const newMsg = { content: msgInput, sentAt: Date.now(), isUserSent: true }
+    dispatch(addMessage(currChat, newMsg))
+    setMsgInput(() => '')
   }
 
   const onBack = () => {
@@ -47,12 +50,12 @@ export function ChatDetailsPage() {
       <section className='chat-messages'>
         <MsgList msgs={currChat.msgs} />
       </section>
-      <section className='chat-inputs flex align-center'>
+      <form className='chat-inputs flex align-center' onSubmit={addMsg}>
         <input value={msgInput} onChange={handleChange} type="text" placeholder='Write a message' />
         <button className='send-msg-btn'>
-          <img src={sendMsgIcon} alt="Send" onClick={addMsg} />
+          {/* <img src="" alt="Send" /> */}
         </button>
-      </section>
+      </form>
       {/* <button className='btn' onClick={onBack}>Back</button> */}
       {/* <Link className='btn' to={'/chat/edit/' + currChat._id} >Edit chat</Link> */}
     </article>

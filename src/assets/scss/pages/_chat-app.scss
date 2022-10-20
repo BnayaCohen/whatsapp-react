@@ -1,10 +1,27 @@
-.chat-app{
-width: 100vw;
-height: 100vh;
+.chat-app {
+  width: 100vw;
+  height: 100vh;
 
-  .chats-display{
+  .chats-header {
+    padding: 12px;
+    background-color: #eaeaea;
+    height: 58px;
+
+    .user-img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: top left;
+      margin-top: -8px;
+      margin-left: -8px;
+    }
+  }
+
+  .chats-display {
     background-color: white;
     width: 80%;
-    border: 1px solid grey;
+    // border: 1px solid grey;
   }
 }

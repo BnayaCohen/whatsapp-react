@@ -12,7 +12,7 @@ const chats = [
         "userId": "5a56640269f443a5d64b32ca",
         "isSeen": true,
         "msgs": [{
-            "content": 'Hi!',
+            "content": 'Hola!',
             "sentAt": 1665907296837,
             "isUserSent": false
         }, {
@@ -40,10 +40,11 @@ const chats = [
         "userId": "5a56640252d6acddd183d319",
         "isSeen": false,
         "msgs": [{
-            "content": 'Hi!',
+            "content": 'Shalom!',
             "sentAt": 1665907296837,
             "isUserSent": false
-        }, {
+        }, 
+        {
             "content": 'How are you?',
             "sentAt": 1665907316799,
             "isUserSent": true
