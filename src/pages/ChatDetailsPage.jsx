@@ -43,7 +43,7 @@ export function ChatDetailsPage() {
       <section className='chat-header flex'>
         <div className="user-img" style={chatUserStyle}></div>
         <div>
-          <h3>{chatUser.name}</h3>
+          <h4>{chatUser.name}</h4>
           <p>Last seen at {new Date(chatUser.lastSeen).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 5)}</p>
         </div>
       </section>
