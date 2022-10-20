@@ -1,5 +1,5 @@
 export function MsgPreview({ msg }) {
-  const msgStyle = { backgroundColor: msg.isUserSent ? 'lightGreen' : 'grey'}
+  const msgStyle = { backgroundColor: msg.isUserSent ? '#d9fdd3' : 'white'}
   return (
     <article className="msg-preview flex" style={msgStyle}>
       <p className="msg-content">{msg.content}</p>

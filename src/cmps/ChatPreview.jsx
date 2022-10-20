@@ -9,14 +9,14 @@ export function ChatPreview({ chat, onRemoveChat }) {
     <article className="chat-preview">
       <Link className='flex align-center space-between' to={`/chat/${chat._id}`}>
         <div className='flex'>
-        <div className="user-img" style={chatUserStyle}></div>
-        <div>
-          <h3>{currUser.name}</h3>
-          <p>{chat.msgs[0].content}</p>
+          <div className="user-img" style={chatUserStyle}></div>
+          <div>
+            <h3>{currUser.name}</h3>
+            <p>{chat.msgs[0].content}</p>
+          </div>
         </div>
-        </div>
         <div>
-          <p>{new Date(chat.msgs[0].sentAt).toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'}).substring(0,5)}</p>
+          <p>{new Date(chat.msgs[0].sentAt).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 5)}</p>
         </div>
       </Link>
       {/* <section className='actions'>

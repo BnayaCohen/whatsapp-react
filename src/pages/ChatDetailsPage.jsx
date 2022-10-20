@@ -5,7 +5,7 @@ import { loadChat, addMessage } from '../store/actions/chatActions'
 import { updateUser } from '../store/actions/userActions'
 import { userService } from '../services/userService.js'
 import { MsgList } from '../cmps/MsgList'
-import sendMsgIcon from '../assets/imgs/sendMsgIcon.svg'
+import { ReactComponent as SendMsgIcon } from '../assets/imgs/sendMsgIcon.svg'
 
 export function ChatDetailsPage() {
 
@@ -52,9 +52,7 @@ export function ChatDetailsPage() {
       </section>
       <form className='chat-inputs flex align-center' onSubmit={addMsg}>
         <input value={msgInput} onChange={handleChange} type="text" placeholder='Write a message' />
-        <button className='send-msg-btn'>
-          {/* <img src="" alt="Send" /> */}
-        </button>
+        <SendMsgIcon onClick={addMsg} style={{color:'#54656f'}} />
       </form>
       {/* <button className='btn' onClick={onBack}>Back</button> */}
       {/* <Link className='btn' to={'/chat/edit/' + currChat._id} >Edit chat</Link> */}

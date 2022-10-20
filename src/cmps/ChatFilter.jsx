@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { ReactComponent as SearchIcon } from '../assets/imgs/SearchIcon.svg'
 
 export class ChatFilter extends Component {
 
@@ -17,9 +18,14 @@ export class ChatFilter extends Component {
   render() {
     const { term } = this.state
     return (
-      <form className='chat-filter'>
-        <input value={term} onChange={this.handleChange} type="text" name="term" placeholder='Search'/>
-      </form>
+      <section className='chat-filter'>
+        <form className='input-container'>
+          <div className='search-icon'>
+            <SearchIcon />
+          </div>
+          <input value={term} onChange={this.handleChange} type="text" name="term" placeholder='Search' />
+        </form>
+      </section>
     )
   }
 }

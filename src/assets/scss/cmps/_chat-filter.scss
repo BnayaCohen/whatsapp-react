@@ -1,4 +1,21 @@
 .chat-filter {
-    margin: 8px 4px;
-    text-align: center;
+    padding: 8px 4px;
+    height: 49px;
+    width: 250px;
+    transition: box-shadow .18s ease-out, background-color .25s ease-out;
+    .input-container {
+        background-color: #f0f2f5;
+        margin: 0 4px;
+        padding-left: 32px;
+        padding-right: 65px;
+        border-radius: 8px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+
+        input{
+            border: none;
+            background-color: inherit;
+        }
+    }
 }
