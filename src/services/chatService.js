@@ -1,3 +1,5 @@
+import { userService } from './userService.js'
+
 export const chatService = {
     getChats,
     getChatById,
@@ -43,7 +45,7 @@ const chats = [
             "content": 'Shalom!',
             "sentAt": 1665907296837,
             "isUserSent": false
-        }, 
+        },
         {
             "content": 'How are you?',
             "sentAt": 1665907316799,
@@ -52,9 +54,11 @@ const chats = [
     },
 ]
 
-function getChats(filterBy = null) {
+function getChats(filterBy) {
     return new Promise((resolve, reject) => {
-        resolve(chats)
+        const regex = new RegExp(filterBy.term, "i")
+        const filteredChats = chats.filter(chat => regex.test(userService.getUserById(chat.userId).name))
+        resolve(filteredChats)
     })
 }
 

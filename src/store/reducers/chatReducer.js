@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
     chats: null,
     currChat: null,
-    filterBy: null
+    filterBy: { term: '' }
 }
 
 

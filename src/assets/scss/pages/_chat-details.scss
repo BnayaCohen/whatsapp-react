@@ -9,8 +9,6 @@
     background-color: #f0f2f5;
     height: 58px;
 
-
-
     .user-img {
       height: 40px;
       width: 40px;
@@ -20,6 +18,13 @@
       background-position: top left;
       margin-top: -8px;
       margin-left: -8px;
+    }
+
+    p{
+      min-height: 20px;
+      font-size: 13px;
+      line-height: 20px;
+      color: #667781;
     }
   }
 
@@ -39,7 +44,7 @@
       font-size: 14.2px;
       line-height: 19px;
       justify-content: space-between;
-      box-shadow: 0 1px 0.5px #0b131921;
+      box-shadow: 0 1px 0.5px rgba(11, 19, 25, 0.13);
     }
 
     .msg-time {

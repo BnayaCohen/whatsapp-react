@@ -33,7 +33,7 @@ function getUser() {
   let user = storageService.load(USER_KEY)
   if (user) return user
   else user = {
-    _id: '5a56640252d6acddd183d319',
+    _id: '5a566402183d319',
     phone: '+1 (958) 502-3495',
     name: 'Parsons Norris',
     status: 'Available',

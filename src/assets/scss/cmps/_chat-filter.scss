@@ -6,12 +6,18 @@
     .input-container {
         background-color: #f0f2f5;
         margin: 0 4px;
-        padding-left: 32px;
-        padding-right: 65px;
+        padding-right: 32px;
+        padding-left: 12px;
         border-radius: 8px;
         height: 35px;
         display: flex;
         align-items: center;
+
+        .search-icon{
+            margin-top: 4px;
+            color:#54656f;
+            cursor: pointer;
+        }
 
         input{
             border: none;
