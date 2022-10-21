@@ -118,3 +118,27 @@ function _makeId(length = 10) {
     }
     return txt
 }
+
+function debounce(func, timeout = 300){
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+  }
+
+//   async function query(filterBy = {}) {
+//     return firebaseService.queryData(filterBy)
+//   }
+  
+//   async function getChatById(chatId) {
+//     return firebaseService.getEntityById(chatId)
+//   }
+  
+//   async function saveChat(chat) {
+//     return firebaseService.saveEntity(chat)
+//   }
+  
+//   async function removeChat(chatId) {
+//     return firebaseService.removeEntity(chatId)
+//   }
