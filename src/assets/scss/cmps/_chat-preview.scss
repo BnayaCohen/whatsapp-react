@@ -28,9 +28,18 @@
         font-size: 1rem;
     }
 
-    p {
-
-        font-size: .9rem;
-        color: #4f5963;
-    }
+    .last-msg {
+        min-height: 20px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        color: #667781;
+      }
+  
+      .last-msg-time {
+        min-height: 20px;
+        font-size: 12px;
+        line-height: 14px;
+        color: #667781;
+      }
 }

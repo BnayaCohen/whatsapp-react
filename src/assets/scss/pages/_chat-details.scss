@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   border-inline-start: 1px solid #e9edef;
-  
+
   .chat-header {
     padding: 12px;
     background-color: #f0f2f5;
@@ -20,14 +20,14 @@
       margin-left: -8px;
     }
 
-    p{
+    p {
       min-height: 20px;
       font-size: 13px;
       line-height: 20px;
       color: #667781;
     }
   }
-
+  
   .chat-messages {
     padding: 12px;
     flex-grow: 1;
@@ -36,7 +36,7 @@
     
     .msg-preview {
       padding: 6px 9px 8px 7px;
-      margin: 3px 0;
+      margin: 1px 0;
       // margin-bottom: 12px;
       border-radius: 7.5px;
       gap: 4px;
@@ -45,13 +45,24 @@
       line-height: 19px;
       justify-content: space-between;
       box-shadow: 0 1px 0.5px rgba(11, 19, 25, 0.13);
+      max-width: 80%;
     }
-
+    
     .msg-time {
       font-size: 0.6875rem;
       color: #667781;
       height: 15px;
       align-self: flex-end;
+      margin-inline-start: 24px;
+    }
+
+    .incoming-msg {
+      background-color: #fff;
+      align-self: self-end;
+    }
+
+    .outgoing-msg {
+      background-color: #d9fdd3;
     }
   }
 
@@ -65,12 +76,6 @@
       height: 30px;
       background-color: #fff;
       border: none;
-    }
-
-    button {
-      width: 30px;
-      height: 30px;
-      background: url(../../imgs/sendMsgIcon.svg);
     }
   }
 }

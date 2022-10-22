@@ -12,11 +12,11 @@ export function ChatPreview({ chat, onRemoveChat }) {
           <div className="user-img" style={chatUserStyle}></div>
           <div>
             <h3>{currUser.name}</h3>
-            <p>{chat.msgs[0].content}</p>
+            <p className='last-msg'>{chat.msgs[0].content}</p>
           </div>
         </div>
         <div>
-          <p>{new Date(chat.msgs[0].sentAt).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 5)}</p>
+          <p className='last-msg-time'>{new Date(chat.msgs[0].sentAt).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 5)}</p>
         </div>
       </Link>
       {/* <section className='actions'>
