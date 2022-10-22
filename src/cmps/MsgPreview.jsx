@@ -1,3 +1,5 @@
+import {getUser} from '../services/userService.js'
+
 export function MsgPreview({ msg }) {
   const msgClass = msg.isUserSent ? 'outgoing-msg' : 'incoming-msg'
   return (

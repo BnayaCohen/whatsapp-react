@@ -1,7 +1,7 @@
 import { userService } from './userService.js'
 
 export const chatService = {
-    getChats,
+    query,
     getChatById,
     deleteChat,
     saveChat,
@@ -11,8 +11,10 @@ export const chatService = {
 const chats = [
     {
         "_id": "5a56b32ca",
-        "userId": "5a56640269f443a5d64b32ca",
-        "isSeen": true,
+        "user1Id": "5a566402183d319",
+        "user2Id": "5a56640269f443a5d64b32ca",
+        "isSeenByUser1": true,
+        "isSeenByUser2": true,
         "msgs": [{
             "content": 'Hola!',
             "sentAt": 1665907296837,
@@ -25,8 +27,10 @@ const chats = [
     },
     {
         "_id": "5a56644a99fde",
-        "userId": "5a5664025f6ae9aa24a99fde",
-        "isSeen": false,
+        "user1Id": "5a566402183d319",
+        "user2Id": "5a5664025f6ae9aa24a99fde",
+        "isSeenByUser1": false,
+        "isSeenByUser2": true,
         "msgs": [{
             "content": 'Hi!',
             "sentAt": 1665907296837,
@@ -39,8 +43,10 @@ const chats = [
     },
     {
         "_id": "5a566d183d319",
-        "userId": "5a56640252d6acddd183d319",
-        "isSeen": false,
+        "user1Id": "5a566402183d319",
+        "user2Id": "5a56640252d6acddd183d319",
+        "isSeenByUser1": false,
+        "isSeenByUser2": false,
         "msgs": [{
             "content": 'Shalom!',
             "sentAt": 1665907296837,
@@ -54,8 +60,16 @@ const chats = [
     },
 ]
 
-function getChats(filterBy) {
+function query(filterBy) {
     return new Promise((resolve, reject) => {
+        const currUserId =userService.getUser()._id
+         chats.map(chat=> {
+            if(chat.user1Id === currUserId || chat.user2Id===currUserId){
+                chat.userId =chat.user1Id === currUserId?chat.user2Id:chat.user1Id
+                return chat
+            }
+            }
+            )
         const regex = new RegExp(filterBy.term, "i")
         const filteredChats = chats.filter(chat => regex.test(userService.getUserById(chat.userId).name))
         resolve(filteredChats)

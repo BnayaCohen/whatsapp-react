@@ -35,8 +35,8 @@ function getUser() {
   else user = {
     _id: '5a566402183d319',
     phone: '+1 (958) 502-3495',
-    name: 'Parsons Norris',
-    status: 'Available',
+    name: 'Dea Folt',
+    status: 'Available Right now',
     lastSeen: Date.now(),
     Photo: null
   }
