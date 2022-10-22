@@ -26,6 +26,7 @@
     h3 {
         // margin-left: -4px;
         font-size: 1rem;
+        background-color: var(--primary-txt-clr);
     }
 
     .last-msg {
@@ -34,12 +35,14 @@
         font-weight: 400;
         line-height: 20px;
         color: #667781;
-      }
-  
-      .last-msg-time {
-        min-height: 20px;
-        font-size: 12px;
+    }
+
+    .last-msg-time {
+        margin-top: 3px;
+        margin-right: 6px;
+        font-size: 11px;
         line-height: 14px;
         color: #667781;
-      }
+        align-self: flex-start;
+    }
 }

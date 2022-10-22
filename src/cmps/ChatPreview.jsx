@@ -15,9 +15,9 @@ export function ChatPreview({ chat, onRemoveChat }) {
             <p className='last-msg'>{chat.msgs[0].content}</p>
           </div>
         </div>
-        <div>
+        {/* <div> */}
           <p className='last-msg-time'>{new Date(chat.msgs[0].sentAt).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 5)}</p>
-        </div>
+        {/* </div> */}
       </Link>
       {/* <section className='actions'>
         <button className='btn' onClick={() => onRemoveChat(chat._id)}>Delete</button>
