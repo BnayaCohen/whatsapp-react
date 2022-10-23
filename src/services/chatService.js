@@ -18,11 +18,11 @@ const chats = [
         "msgs": [{
             "content": 'Hola!',
             "sentAt": 1665907296837,
-            "isUserSent": false
+            "userId": '5a56640269f443a5d64b32ca'
         }, {
             "content": 'How are you?',
             "sentAt": 1665907316799,
-            "isUserSent": true
+            "userId": '5a566402183d319'
         }]
     },
     {
@@ -34,11 +34,11 @@ const chats = [
         "msgs": [{
             "content": 'Hi!',
             "sentAt": 1665907296837,
-            "isUserSent": false
+            "userId": '5a5664025f6ae9aa24a99fde'
         }, {
             "content": 'How are you?',
             "sentAt": 1665907316799,
-            "isUserSent": true
+            "userId": '5a566402183d319'
         }]
     },
     {
@@ -50,12 +50,12 @@ const chats = [
         "msgs": [{
             "content": 'Shalom!',
             "sentAt": 1665907296837,
-            "isUserSent": false
+            "userId": '5a566402183d319'
         },
         {
             "content": 'How are you?',
             "sentAt": 1665907316799,
-            "isUserSent": true
+            "userId": '5a56640252d6acddd183d319'
         }]
     },
 ]

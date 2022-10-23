@@ -37,7 +37,6 @@
     .msg-preview {
       padding: 6px 9px 8px 7px;
       margin: 1px 0;
-      // margin-bottom: 12px;
       border-radius: 7.5px;
       gap: 4px;
       color: var(--primary-txt-clr);
@@ -46,19 +45,35 @@
       justify-content: space-between;
       box-shadow: 0 1px 0.5px rgba(11, 19, 25, 0.13);
       max-width: 80%;
-
+      
       .msg-content {
         overflow: hidden;
         text-overflow: ellipsis;
       }
     }
-
+    
     .msg-time {
       font-size: 0.6875rem;
       color: #667781;
       height: 15px;
       align-self: flex-end;
       margin-inline-start: 24px;
+    }
+    
+    .msg-space {
+      margin-top: 10px;
+      border-top-right-radius: 0;
+    }
+    
+    .msg-tail {
+      right: -16px;
+      position: relative;
+      top: -6px;
+      z-index: 100;
+      display: block;
+      width: 8px;
+      height: 13px;
+      // box-shadow: 0 1px 0.5px rgba(11, 19, 25, 0.13);
     }
 
     .incoming-msg {
@@ -68,6 +83,7 @@
 
     .outgoing-msg {
       background-color: #d9fdd3;
+
     }
   }
 

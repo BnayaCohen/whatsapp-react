@@ -32,9 +32,12 @@ export function ChatApp() {
     return (
         <div className='chat-app flex'>
             <section className='chats-display'>
-                <article className='chats-header flex align-center'>
-                    <div className="user-img" style={userStyle}></div>
-                    <h4 className='user-name'>{currUser.name}</h4>
+                <article className='chats-header flex align-center space-between'>
+                    <div className='flex align-center'>
+                        <div className="user-img" style={userStyle}></div>
+                        <h4 className='user-name'>{currUser.name}</h4>
+                    </div>
+                    <div className='new-chat-btn'></div>
                 </article>
 
                 <ChatFilter onChangeFilter={onChangeFilter} />
@@ -43,7 +46,7 @@ export function ChatApp() {
                     <ChatList onRemoveChat={onRemoveChat} chats={chats} />
                     : <h1>no chats!</h1>}
             </section>
-            
+
             <section className='chat-details'>
                 <Outlet />
             </section>

@@ -26,7 +26,7 @@ export function ChatDetailsPage() {
 
   const addMsg = () => {
     if (!msgInput) return
-    const newMsg = { content: msgInput, sentAt: Date.now()}
+    const newMsg = { content: msgInput, sentAt: Date.now(),userId:currUser._id}
     dispatch(addMessage(currChat, newMsg))
     setMsgInput(() => '')
   }
