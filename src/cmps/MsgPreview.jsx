@@ -5,7 +5,7 @@ export function MsgPreview({ msg, lastMsgId }) {
 
   const currUser = useSelector(state => state.userModule.loggedInUser)
   const msgClass = msg.userId === currUser._id ? 'outgoing' : 'incoming'
-  const msgSpace = msg.userId !== lastMsgId && 'msg-space'
+  const msgSpace = msg.userId !== lastMsgId ? 'msg-space' : ''
 
   return (
     <article className={`msg-preview flex ${msgClass}-msg ${msgSpace + '-' + msgClass}`}>

@@ -9,7 +9,7 @@
     }
 
     &:hover {
-        background-color: #f0f2f5;
+        background-color: #f5f6f6;
     }
 
     .user-img {
@@ -51,4 +51,13 @@
 }
 .has-new-msgs{
     font-weight: 500;
+
+    .last-msg-time {
+        font-weight: 600;
+        color: #1fa855;
+    }
+}
+
+.selected-chat{
+    background-color: #f0f2f5!important;
 }

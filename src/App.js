@@ -6,7 +6,6 @@ import { AppHeader } from './cmps/AppHeader';
 import { HomePage } from './pages/HomePage';
 import { ChatApp } from './pages/ChatApp';
 import { ChatDetailsPage } from './pages/ChatDetailsPage';
-import { ChatEdit } from './pages/ChatEdit';
 
 const PrivateRoute = ({ children }) => {
     const isAdmin = true
@@ -30,16 +29,8 @@ function App() {
                         } /> 
                         </Route>
                         {/* <Route path='/signup' element={<SignupPage />} /> */}
-                        {/* <Route path='/chat/edit/:id' element={<ChatEdit />} />
-                        <Route path='/chat/edit/' element={<ChatEdit />} /> */}
                     </Routes>
                 </main>
-
-                {/* <footer>
-                    <section className='container'>
-                        coffeeRights 2022 &copy;
-                    </section>
-                </footer> */}
             </div>
         </Router>
     )
