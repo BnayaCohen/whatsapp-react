@@ -29,7 +29,6 @@ export function ChatApp() {
 
     if (!currUser) return <div>Loading...</div>
     const userStyle = { backgroundImage: `url(https://robohash.org/${currUser._id})` }
-    console.log(currUser);
     return (
         <div className='chat-app flex'>
             <section className='chats-display'>
@@ -38,14 +37,14 @@ export function ChatApp() {
                         <div className="user-img" style={userStyle}></div>
                         <h4 className='user-name'>{currUser.name}</h4>
                     </div>
-                    <NewChat className='new-chat-btn'/>
+                    <NewChat className='new-chat-btn' />
                 </article>
 
                 <ChatFilter onChangeFilter={onChangeFilter} />
 
                 {chats?.length > 0 ?
-                    <ChatList onRemoveChat={onRemoveChat} chats={chats} />
-                    : <h1>no chats!</h1>}
+                    <ChatList currUserId={currUser._id} chats={chats} />
+                    : <div className='no-chats'><p>Couldn't find chats...</p></div>}
             </section>
 
             <section className='chat-details'>

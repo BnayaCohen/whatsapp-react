@@ -15,11 +15,17 @@ export function loadChats() {
     }
 }
 
-export function loadChat(chatId) {
+export function loadChat(chatId, userId) {
 
     return async (dispatch) => {
         try {
             const chat = await chatService.getChatById(chatId)
+            if (chat.user1Id === userId) {
+                chat.isSeenByUser1 = true
+            } else {
+                chat.isSeenByUser2 = true
+            }
+            dispatch({ type: 'UPDATE_CHAT', chat })
             dispatch({ type: 'SET_CHAT', chat })
         } catch (err) {
             console.log('err:', err)
@@ -31,7 +37,7 @@ export function removeChat(chatId) {
 
     return async (dispatch, getState) => {
         try {
-            const chat = await chatService.deleteChat(chatId)
+            const chat = await chatService.removeChat(chatId)
             dispatch({ type: 'REMOVE_CHAT', chatId })
             return chat
         } catch (err) {
@@ -53,7 +59,6 @@ export function addMessage(chat, msg) {
                 chat.isSeenByUser2 = true
             }
             dispatch({ type: 'UPDATE_CHAT', chat })
-            // dispatch({ type: 'SET_CHAT', chat })
         } catch (err) {
             console.log('err:', err)
         }

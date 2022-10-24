@@ -34,6 +34,8 @@
         font-weight: 400;
         line-height: 20px;
         color: #667781;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .last-msg-time {

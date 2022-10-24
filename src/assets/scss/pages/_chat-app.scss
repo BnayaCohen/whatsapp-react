@@ -26,5 +26,18 @@
   .chats-display {
     background-color: white;
     width: 80%;
+
+    .no-chats{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      border-block: 1px solid #e9edef;
+
+      P{
+        font-size: 0.875rem;
+        color: #8696a0;
+      }
+    }
   }
 }

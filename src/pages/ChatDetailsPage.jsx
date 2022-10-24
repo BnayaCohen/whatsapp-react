@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadChat, addMessage } from '../store/actions/chatActions'
 import { updateUser } from '../store/actions/userActions'
@@ -13,11 +13,10 @@ export function ChatDetailsPage() {
   const currUser = useSelector(state => state.userModule.loggedInUser)
   const currChat = useSelector((state => state.chatModule.currChat))
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const params = useParams()
 
   useEffect(() => {
-    dispatch(loadChat(params.id))
+    dispatch(loadChat(params.id, currUser._id))
   }, [params.id])
 
   const handleChange = ({ target }) => {
@@ -26,18 +25,14 @@ export function ChatDetailsPage() {
 
   const addMsg = () => {
     if (!msgInput) return
-    const newMsg = { content: msgInput, sentAt: Date.now(),userId:currUser._id}
+    const newMsg = { content: msgInput, sentAt: Date.now(), userId: currUser._id }
     dispatch(addMessage(currChat, newMsg))
     setMsgInput(() => '')
   }
 
-  const onBack = () => {
-    navigate('/')
-  }
-
   if (!currChat) return <div>Loading...</div>
-  const chatUser = userService.getUserById(currChat.userId)
-  const chatUserStyle = { backgroundImage: `url(https://robohash.org/${currChat.userId})` }
+  const chatUser = userService.getUserById(currChat.user1Id === currUser._id ? currChat.user2Id : currChat.user1Id)
+  const chatUserStyle = { backgroundImage: `url(https://robohash.org/${chatUser._id})` }
   return (
     <article className='chat-details flex column space-between'>
       <section className='chat-header flex align-center'>
@@ -52,10 +47,8 @@ export function ChatDetailsPage() {
       </section>
       <form className='chat-inputs flex align-center' onSubmit={addMsg}>
         <input value={msgInput} onChange={handleChange} type="text" placeholder='Write a message' />
-        <SendMsgIcon onClick={addMsg} style={{color:'#54656f'}} />
+        <SendMsgIcon onClick={addMsg} style={{ color: '#54656f' }} />
       </form>
-      {/* <button className='btn' onClick={onBack}>Back</button> */}
-      {/* <Link className='btn' to={'/chat/edit/' + currChat._id} >Edit chat</Link> */}
     </article>
   )
 }

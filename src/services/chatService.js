@@ -3,7 +3,7 @@ import { userService } from './userService.js'
 export const chatService = {
     query,
     getChatById,
-    deleteChat,
+    removeChat,
     saveChat,
     getEmptyChat
 }
@@ -63,15 +63,9 @@ const chats = [
 function query(filterBy) {
     return new Promise((resolve, reject) => {
         const currUserId =userService.getUser()._id
-         chats.map(chat=> {
-            if(chat.user1Id === currUserId || chat.user2Id===currUserId){
-                chat.userId =chat.user1Id === currUserId?chat.user2Id:chat.user1Id
-                return chat
-            }
-            }
-            )
         const regex = new RegExp(filterBy.term, "i")
-        const filteredChats = chats.filter(chat => regex.test(userService.getUserById(chat.userId).name))
+        const filteredChats = chats.filter(chat => regex.test(userService.getUserById(
+            chat.user1Id === currUserId ? chat.user2Id : chat.user1Id).name))
         resolve(filteredChats)
     })
 }
@@ -83,7 +77,7 @@ function getChatById(id) {
     })
 }
 
-function deleteChat(id) {
+function removeChat(id) {
     return new Promise((resolve, reject) => {
         const index = chats.findIndex(chat => chat._id === id)
         if (index !== -1) {
