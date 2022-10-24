@@ -2,12 +2,14 @@ import { Link } from 'react-router-dom'
 import { userService } from '../services/userService'
 
 export function ChatPreview({ chat, currUserId }) {
-  const currChatUser = userService.getUserById(chat.user1Id === currUserId ? chat.user2Id : chat.user1Id)
-
+  const chatUserIdNum = chat.user1Id === currUserId ? '2' : '1'
+  const currChatUser = userService.getUserById(chat[`user${chatUserIdNum}Id`])
+  const newMsgsClass = !chat[`isSeenByUser${chatUserIdNum}`] ? 'has-new-msgs':''
+  console.log(newMsgsClass);
   const chatUserStyle = { backgroundImage: `url(https://robohash.org/${currChatUser._id})` }
   return (
-    <article className="chat-preview">
-      <Link className='flex align-center space-between' to={`/chat/${chat._id}`}>
+    <article className={'chat-preview ' + newMsgsClass}>
+      <Link className="flex align-center space-between" to={`/chat/${chat._id}`}>
         <div className='flex'>
           <div className="user-img" style={chatUserStyle}></div>
           <div>

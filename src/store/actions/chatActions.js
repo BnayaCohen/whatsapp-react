@@ -26,7 +26,7 @@ export function loadChat(chatId, userId) {
                 chat.isSeenByUser2 = true
             }
             dispatch({ type: 'UPDATE_CHAT', chat })
-            dispatch({ type: 'SET_CHAT', chat })
+            dispatch({ type: 'SET_CHAT', chat }) 
         } catch (err) {
             console.log('err:', err)
         }

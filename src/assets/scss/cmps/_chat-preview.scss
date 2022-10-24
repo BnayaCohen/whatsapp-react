@@ -23,7 +23,7 @@
     }
 
     h3 {
-        // margin-left: -4px;
+        font-weight: inherit;
         font-size: 1rem;
         background-color: var(--primary-txt-clr);
     }
@@ -31,7 +31,7 @@
     .last-msg {
         min-height: 20px;
         font-size: 14px;
-        font-weight: 400;
+        font-weight: inherit;
         line-height: 20px;
         color: #667781;
         overflow: hidden;
@@ -45,5 +45,10 @@
         line-height: 14px;
         color: #667781;
         align-self: flex-start;
+        font-weight: inherit;
     }
+
+}
+.has-new-msgs{
+    font-weight: 500;
 }
