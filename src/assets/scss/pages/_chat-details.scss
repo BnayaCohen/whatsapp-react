@@ -10,18 +10,16 @@
     height: 58px;
 
     .user-img {
-      height: 40px;
-      width: 40px;
+      height: 44px;
+      width: 44px;
       border-radius: 50%;
-      background-repeat: no-repeat;
       background-size: 100%;
-      background-position: top left;
-      margin-top: -8px;
-      margin-left: -8px;
+      margin-top: -6px;
+      margin-right: 12px;
     }
 
     p {
-      min-height: 20px;
+      // min-height: 20px;
       font-size: 13px;
       line-height: 20px;
       color: #667781;
@@ -45,13 +43,13 @@
       justify-content: space-between;
       box-shadow: 0 1px 0.5px rgba(11, 19, 25, 0.13);
       max-width: 80%;
-      
+
       .msg-content {
         overflow: hidden;
         text-overflow: ellipsis;
       }
     }
-    
+
     .msg-time {
       font-size: 0.6875rem;
       color: #667781;
@@ -59,34 +57,40 @@
       align-self: flex-end;
       margin-inline-start: 24px;
     }
-    
-    .msg-space {
+
+    .msg-space-incoming {
       margin-top: 10px;
       border-top-right-radius: 0;
     }
-    
-    .msg-tail {
-      right: -16px;
-      position: relative;
-      top: -6px;
-      z-index: 100;
-      display: block;
-      width: 8px;
-      height: 13px;
-      // box-shadow: 0 1px 0.5px rgba(11, 19, 25, 0.13);
+
+    .msg-space-outgoing {
+      margin-top: 10px;
+      border-top-left-radius: 0;
     }
 
     .incoming-msg {
       background-color: #fff;
       align-self: self-end;
-    }
 
+      .msg-tail {
+        position: relative;
+        right: -17px;
+        top: -6px;
+        color: #fff;
+      }
+    }
+    
     .outgoing-msg {
       background-color: #d9fdd3;
-
+      
+      .msg-tail {
+        position: absolute;
+        transform: scale(-1, 1) translate(15px,-6px);
+        color: #d9fdd3;
+      }
     }
   }
-
+  
   .chat-inputs {
     height: 50px;
     background-color: #f0f2f5;

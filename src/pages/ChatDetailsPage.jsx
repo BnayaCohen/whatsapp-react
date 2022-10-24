@@ -40,7 +40,7 @@ export function ChatDetailsPage() {
   const chatUserStyle = { backgroundImage: `url(https://robohash.org/${currChat.userId})` }
   return (
     <article className='chat-details flex column space-between'>
-      <section className='chat-header flex'>
+      <section className='chat-header flex align-center'>
         <div className="user-img" style={chatUserStyle}></div>
         <div>
           <h4>{chatUser.name}</h4>

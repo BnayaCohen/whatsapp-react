@@ -5,6 +5,7 @@ import { ChatFilter } from '../cmps/ChatFilter'
 import { ChatList } from '../cmps/ChatList'
 import { loadChats, removeChat, setFilterBy } from '../store/actions/chatActions'
 import { loadUser } from '../store/actions/userActions'
+import { ReactComponent as NewChat } from '../assets/imgs/NewChatIcon.svg'
 
 export function ChatApp() {
 
@@ -37,7 +38,7 @@ export function ChatApp() {
                         <div className="user-img" style={userStyle}></div>
                         <h4 className='user-name'>{currUser.name}</h4>
                     </div>
-                    <div className='new-chat-btn'></div>
+                    <NewChat className='new-chat-btn'/>
                 </article>
 
                 <ChatFilter onChangeFilter={onChangeFilter} />
