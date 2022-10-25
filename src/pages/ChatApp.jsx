@@ -1,26 +1,25 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
 import { ChatFilter } from '../cmps/ChatFilter'
 import { ChatList } from '../cmps/ChatList'
-import { loadChats, removeChat, setFilterBy } from '../store/actions/chatActions'
+import { loadChats, setFilterBy } from '../store/actions/chatActions'
 import { loadUser } from '../store/actions/userActions'
 import { ReactComponent as NewChat } from '../assets/imgs/NewChatIcon.svg'
+import { ReactComponent as NoChatLogo } from '../assets/imgs/NoChatLogo.svg'
 
 export function ChatApp() {
 
     const currUser = useSelector(state => state.userModule.loggedInUser)
     const chats = useSelector(state => state.chatModule.chats)
     const dispatch = useDispatch()
+    const params = useParams()
+    console.log(params.id);
 
     useEffect(() => {
         dispatch(loadUser())
         dispatch(loadChats())
     }, [])
-
-    const onRemoveChat = async (chatId) => {
-        dispatch(await removeChat(chatId))
-    }
 
     const onChangeFilter = (filterBy) => {
         dispatch(setFilterBy(filterBy))
@@ -48,10 +47,14 @@ export function ChatApp() {
             </section>
 
             <section className='chat-details'>
-                <Outlet />
+                {params.id ? <Outlet /> :
+                    <div className='empty-chat-details flex column align-center justify-center'>
+                        <NoChatLogo className='empty-chat-logo' />
+                        <h1>WhatsApp Web</h1>
+                        <div className='empty-chat-intro'>You can send messages without kepping the phone connected.</div>
+                    </div>
+                }
             </section>
-
-            {/* <Link className='btn' to="/chat/edit">Add Chat</Link> */}
         </div>
     )
 }

@@ -21,7 +21,7 @@ function App() {
 
                 <main className='container'>
                     <Routes>
-                        <Route path='/' element={<ChatApp />}>
+                        <Route path='/chat' element={<ChatApp />}>
                            <Route path='/chat/:id' element={
                             <PrivateRoute>
                                 <ChatDetailsPage />
