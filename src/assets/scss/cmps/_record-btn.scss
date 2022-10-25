@@ -1,0 +1,26 @@
+.microphone-container {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // padding: 6px;
+  // margin-top: 2px;
+  // height: 32px;
+  // width: 32px;
+  // border-radius: 50%;
+
+  .microphone-btn {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  svg {
+    color: #667781;
+    cursor: pointer;
+  }
+}
+
+.recording {
+  color: #00a884 !important;
+}

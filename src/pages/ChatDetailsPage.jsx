@@ -5,6 +5,7 @@ import { loadChat, addMessage } from '../store/actions/chatActions'
 import { updateUser } from '../store/actions/userActions'
 import { userService } from '../services/userService.js'
 import { MsgList } from '../cmps/MsgList'
+import { RecordBtn } from '../cmps/RecordBtn'
 import { ReactComponent as SendMsgIcon } from '../assets/imgs/sendMsgIcon.svg'
 
 export function ChatDetailsPage() {
@@ -30,6 +31,10 @@ export function ChatDetailsPage() {
     setMsgInput(() => '')
   }
 
+  const updateText = (txt) => {
+    setMsgInput(() => txt)
+  }
+
   if (!currChat) return <div>Loading...</div>
   const chatUser = userService.getUserById(currChat.user1Id === currUser._id ? currChat.user2Id : currChat.user1Id)
   const chatUserStyle = { backgroundImage: `url(https://robohash.org/${chatUser._id})` }
@@ -47,7 +52,10 @@ export function ChatDetailsPage() {
       </section>
       <form className='chat-inputs flex align-center' onSubmit={addMsg}>
         <input value={msgInput} onChange={handleChange} type="text" placeholder='Write a message' />
-        <SendMsgIcon onClick={addMsg} style={{ color: '#54656f' }} />
+        {msgInput ?
+          <SendMsgIcon onClick={addMsg} style={{ color: '#54656f' }} />
+          :
+          <RecordBtn updateText={updateText} />}
       </form>
     </article>
   )

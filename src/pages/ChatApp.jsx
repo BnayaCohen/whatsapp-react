@@ -14,7 +14,6 @@ export function ChatApp() {
     const chats = useSelector(state => state.chatModule.chats)
     const dispatch = useDispatch()
     const params = useParams()
-    console.log(params.id);
 
     useEffect(() => {
         dispatch(loadUser())

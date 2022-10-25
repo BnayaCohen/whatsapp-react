@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { ReactComponent as MsgTail } from '../assets/imgs/MsgTail.svg'
+import { ReactComponent as DoubleVIcon } from '../assets/imgs/DoubleVIcon.svg'
 
 export function MsgPreview({ msg, lastMsgId }) {
 
@@ -11,7 +12,12 @@ export function MsgPreview({ msg, lastMsgId }) {
     <article className={`msg-preview flex ${msgClass}-msg ${msgSpace + '-' + msgClass}`}>
       {(msgSpace && msgClass === 'outgoing') && <MsgTail className="msg-tail" />}
       <p className="msg-content">{msg.content}</p>
-      <p className="msg-time">{new Date(msg.sentAt).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 5)}</p>
+      <div className="flex">
+        <p className="msg-time">
+          {new Date(msg.sentAt).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 5)}
+        </p>
+        {msgClass === 'outgoing' && <DoubleVIcon className="v-icon" />}
+      </div>
       {(msgSpace && msgClass === 'incoming') && <MsgTail className="msg-tail" />}
     </article>
   )
