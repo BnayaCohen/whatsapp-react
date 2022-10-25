@@ -6,20 +6,20 @@ import {
 
 export const firebaseService = {
     queryData,
-    getEntityById,
-    saveEntity,
-    removeEntity,
+    getChatById,
+    saveChat,
+    removeChat,
 }
-// console.log('process.env.VITE_SOME_KEY', import.meta.env);
 
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APP_ID,
-};
+    apiKey: "AIzaSyAl6jkW4TSjMyiriijdQL2DGL5C_PFHGME",
+  authDomain: "whatsapp-c415f.firebaseapp.com",
+  projectId: "whatsapp-c415f",
+  storageBucket: "whatsapp-c415f.appspot.com",
+  messagingSenderId: "460845537909",
+  appId: "1:460845537909:web:6c0d0006587e3ba820b63c",
+  measurementId: "G-LY6K4B7MBK"
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -28,18 +28,18 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 //Gets a Collection Reference
-const tasksRef = collection(db, 'task')
+const chatsRef = collection(db, 'chat')
 
 async function queryData(filterBy) {
-    let q = tasksRef
-    if (filterBy?.txt) {
-        const txt = filterBy.txt.toLowerCase()
-        q = query(tasksRef, orderBy("title"), startAt(txt), endAt(txt + '\uf8ff'))
+    let q = chatsRef
+    if (filterBy?.term) {
+        const txt = filterBy.term.toLowerCase()
+        q = query(chatsRef, orderBy("name"), startAt(txt), endAt(txt + '\uf8ff'))
     }
     try {
-        const tasksSnapshot = await getDocs(q)
-        console.log('tasksSnapshot', tasksSnapshot)
-        return tasksSnapshot.docs.map((doc) => {
+        const chatsSnapshot = await getDocs(q)
+        // console.log('chatsSnapshot', chatsSnapshot)
+        return chatsSnapshot.docs.map((doc) => {
             return { _id: doc.id, ...doc.data() }
         })
     } catch (e) {
@@ -47,12 +47,12 @@ async function queryData(filterBy) {
     }
 }
 
-async function getEntityById(entityId) {
-    const docRef = doc(tasksRef, entityId)
+async function getChatById(chatId) {
+    const docRef = doc(chatsRef, chatId)
     try {
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
-            return { _id: entityId, ...docSnap.data() }
+            return { _id: chatId, ...docSnap.data() }
         } else {
             console.log('No such document!')
         }
@@ -61,30 +61,32 @@ async function getEntityById(entityId) {
     }
 }
 
-async function saveEntity(entity) {
-    if (entity._id) {
-        const copyEntitiy = JSON.parse(JSON.stringify(entity))
-        const entityRef = doc(tasksRef, entity._id)
-        delete copyEntitiy._id
+async function saveChat(chat) {
+    delete chat._id
+    if (chat?._id) {
+        const copyChat = JSON.parse(JSON.stringify(chat))
+        const chatRef = doc(chatsRef, chat._id)
+        delete copyChat._id
         try {
-            await updateDoc(entityRef, copyEntitiy)
-            return entity
+            await updateDoc(chatRef, copyChat)
+            return chat
         } catch (e) {
             console.error("Error updating document: ", e);
         }
     } else {
         try {
-            const task = await addDoc(tasksRef, entity)
-            return { _id: task.id, ...entity }
+            console.log(chat);
+            const newChat = await addDoc(chatsRef, chat)
+            return { _id: newChat.id, ...newChat }
         } catch (e) {
             console.error("Error saving document: ", e);
         }
     }
 }
 
-async function removeEntity(entityId) {
+async function removeChat(chatId) {
     try {
-        await deleteDoc(doc(tasksRef, entityId))
+        await deleteDoc(doc(chatsRef, chatId))
     } catch (e) {
         console.error("Error deleting document: ", e);
     }
