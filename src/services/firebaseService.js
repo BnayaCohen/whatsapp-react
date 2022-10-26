@@ -6,10 +6,14 @@ import {
 import { userService } from "./userService";
 
 export const firebaseService = {
-    queryData,
+    chatsQueryData,
     getChatById,
     saveChat,
     removeChat,
+    usersQueryData,
+    getUserById,
+    saveUser,
+    removeUser,
 }
 
 const firebaseConfig = {
@@ -30,8 +34,9 @@ const db = getFirestore(app);
 
 //Gets a Collection Reference
 const chatsRef = collection(db, 'chat')
+const usersRef = collection(db, 'user')
 
-async function queryData(filterBy = { term: '' }) {
+async function chatsQueryData(filterBy = { term: '' }) {
     const q = query(chatsRef)
     try {
         const chatsSnapshot = await getDocs(q)
@@ -41,8 +46,18 @@ async function queryData(filterBy = { term: '' }) {
         const regex = new RegExp(filterBy.term, "i")
         const filteredChats = chatDocs.filter(chat => regex.test(userService.getUserById(
             chat.user1Id === currUserId ? chat.user2Id : chat.user1Id).name))
-            console.log(filteredChats);
-        return filteredChats.sort((c1, c2) => (c2.msgs[c2.msgs.length - 1]?.sentAt||0) - (c1.msgs[c1.msgs.length - 1]?.sentAt||0))
+        return filteredChats.sort((c1, c2) => (c2.msgs[c2.msgs.length - 1]?.sentAt || 0) - (c1.msgs[c1.msgs.length - 1]?.sentAt || 0))
+    } catch (e) {
+        console.error("Error geting documents: ", e);
+    }
+}
+
+async function usersQueryData() {
+    const q = query(usersRef)
+    try {
+        const usersSnapshot = await getDocs(q)
+        // console.log('usersSnapshot', usersSnapshot)
+        return usersSnapshot.docs.map((doc) => ({ _id: doc.id, ...doc.data() }))
     } catch (e) {
         console.error("Error geting documents: ", e);
     }
@@ -54,6 +69,20 @@ async function getChatById(chatId) {
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
             return { _id: chatId, ...docSnap.data() }
+        } else {
+            console.log('No such document!')
+        }
+    } catch (e) {
+        console.error("Error finding document: ", e);
+    }
+}
+
+async function getUserById(userId) {
+    const docRef = doc(usersRef, userId)
+    try {
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+            return { _id: userId, ...docSnap.data() }
         } else {
             console.log('No such document!')
         }
@@ -83,9 +112,38 @@ async function saveChat(chat) {
     }
 }
 
+async function saveUser(user) {
+    if (user._id) {
+        const copyUser = JSON.parse(JSON.stringify(user))
+        const userRef = doc(usersRef, user._id)
+        delete copyUser._id
+        try {
+            await updateDoc(userRef, copyUser)
+            return user
+        } catch (e) {
+            console.error("Error updating document: ", e);
+        }
+    } else {
+        try {
+            const newUser = await addDoc(usersRef, user)
+            return { _id: newUser.id, ...newUser }
+        } catch (e) {
+            console.error("Error saving document: ", e);
+        }
+    }
+}
+
 async function removeChat(chatId) {
     try {
         await deleteDoc(doc(chatsRef, chatId))
+    } catch (e) {
+        console.error("Error deleting document: ", e);
+    }
+}
+
+async function removeUser(userId) {
+    try {
+        await deleteDoc(doc(usersRef, userId))
     } catch (e) {
         console.error("Error deleting document: ", e);
     }

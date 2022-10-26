@@ -16,7 +16,7 @@ export function NewChatModal({ currUserId }) {
   }
 
   return (
-    <form className='chat-inputs flex align-center' onSubmit={addMsg}>
+    <form className='chat-inputs flex align-center' onSubmit={onStartNewChat}>
 
       <input value={phoneInput} onChange={handleChange} type="text" placeholder='Enter phone number' />
       <SendMsgIcon onClick={onStartNewChat} style={{ color: '#54656f' }} />

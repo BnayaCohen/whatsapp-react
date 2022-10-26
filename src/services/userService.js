@@ -1,31 +1,32 @@
 import { storageService } from './storageService.js'
+import { firebaseService } from './firebaseService.js'
 
-const users = [
-  {
-    "_id": "5a56640269f443a5d64b32ca",
-    "phone": "+1 (968) 593-3824",
-    "name": "Ochoa Hyde",
-    "status": 'Available',
-    "lastSeen": 1665907316799,
-    "Photo": null
-  },
-  {
-    "_id": "5a5664025f6ae9aa24a99fde",
-    "phone": "+1 (948) 464-2888",
-    "name": "Hallie Mclean",
-    "status": 'Available',
-    "lastSeen": 1665907359136,
-    "Photo": null
-  },
-  {
-    "_id": "5a56640252d6acddd183d319",
-    "phone": "+1 (958) 502-3495",
-    "name": "Parsons Norris",
-    "status": 'Available',
-    "lastSeen": 1665907277183,
-    "Photo": null
-  },
-]
+const users = firebaseService.usersQueryData()
+//   [{
+//     "_id": "5a56640269f443a5d64b32ca",
+//     "phone": "+1 (968) 593-3824",
+//     "name": "Ochoa Hyde",
+//     "status": 'Available',
+//     "lastSeen": 1665907316799,
+//     "Photo": null
+//   },
+//   {
+//     "_id": "5a5664025f6ae9aa24a99fde",
+//     "phone": "+1 (948) 464-2888",
+//     "name": "Hallie Mclean",
+//     "status": 'Available',
+//     "lastSeen": 1665907359136,
+//     "Photo": null
+//   },
+//   {
+//     "_id": "5a56640252d6acddd183d319",
+//     "phone": "+1 (958) 502-3495",
+//     "name": "Parsons Norris",
+//     "status": 'Available',
+//     "lastSeen": 1665907277183,
+//     "Photo": null
+//   },
+// ]
 
 const USER_KEY = 'loggedInUser'
 
@@ -36,26 +37,30 @@ function getUser() {
     _id: '5a566402183d319',
     phone: '+1 (958) 502-3495',
     name: 'Dea Folt',
-    status: 'Available Right now',
+    status: 'Available now',
     lastSeen: Date.now(),
-    Photo: null
   }
   storageService.store(USER_KEY, user)
   return user
 }
 
-function getUserById(userId){
-  return users.find(user => user._id === userId)
+function getUserById(userId) {
+  return firebaseService.getUserById(userId)
+  // return users.find(user => user._id === userId)
 }
 
-function isPhoneExist(phone){
+function isPhoneExist(phone) {
   return users.some(user => user.phone === phone)
 }
 
-function signup(name) {
+function signup(name, phone, status) {
   const user = {
+    phone,
     name,
+    status,
+    lastSeen: Date.now(),
   }
+  firebaseService.saveUser(user)
   storageService.store(USER_KEY, user)
   return user
 }

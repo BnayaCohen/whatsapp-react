@@ -61,7 +61,7 @@ export const chatService = {
 // ]
 
 async function query(filterBy) {
-    return await firebaseService.queryData(filterBy)
+    return await firebaseService.chatsQueryData(filterBy)
 }
 
 async function getChatById(chatId) {
