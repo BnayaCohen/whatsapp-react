@@ -1,4 +1,3 @@
-import { userService } from './userService.js'
 import { firebaseService } from './firebaseService.js'
 
 export const chatService = {
@@ -9,8 +8,7 @@ export const chatService = {
     getEmptyChat
 }
 
-let chats 
-//  [
+// const chats = [
 //     {
 //         "_id": "5a56b32ca",
 //         "user1Id": "5a566402183d319",
@@ -63,55 +61,19 @@ let chats
 // ]
 
 async function query(filterBy) {
-chats =await queryCheck(filterBy)
-    return chats
-    return new Promise((resolve, reject) => {
-        const currUserId =userService.getUser()._id
-        const regex = new RegExp(filterBy.term, "i")
-        const filteredChats = chats.filter(chat => regex.test(userService.getUserById(
-            chat.user1Id === currUserId ? chat.user2Id : chat.user1Id).name))
-        resolve(filteredChats)
-    })
+    return await firebaseService.queryData(filterBy)
 }
 
-function getChatById(id) {
-    return new Promise((resolve, reject) => {
-        const chat = chats.find(chat => chat._id === id)
-        chat ? resolve(chat) : reject(`Chat id ${id} not found!`)
-    })
+async function getChatById(chatId) {
+    return await firebaseService.getChatById(chatId)
 }
 
-function removeChat(id) {
-    return new Promise((resolve, reject) => {
-        const index = chats.findIndex(chat => chat._id === id)
-        if (index !== -1) {
-            chats.splice(index, 1)
-        }
-
-        resolve(chats)
-    })
-}
-
-function _updateChat(chat) {
-    return new Promise((resolve, reject) => {
-        const index = chats.findIndex(c => chat._id === c._id)
-        if (index !== -1) {
-            chats[index] = chat
-        }
-        resolve(chat)
-    })
-}
-
-function _addChat(chat) {
-    return new Promise((resolve, reject) => {
-        chat._id = _makeId()
-        chats.push(chat)
-        resolve(chat)
-    })
+async function removeChat(chatId) {
+    return await firebaseService.removeChat(chatId)
 }
 
 function saveChat(chat) {
-    return chat._id ? _updateChat(chat) : _addChat(chat)
+    return firebaseService.saveChat(chat)
 }
 
 function getEmptyChat() {
@@ -137,27 +99,10 @@ function _makeId(length = 10) {
     return txt
 }
 
-function debounce(func, timeout = 300){
+function debounce(func, timeout = 300) {
     let timer;
     return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => { func.apply(this, args); }, timeout);
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
     };
-  }
-
-  async function queryCheck(filterBy) {
-  return await firebaseService.queryData(filterBy)
-//    await firebaseService.saveChat(JSON.parse(JSON.stringify(chats[2])))
-  }
-  
-//   async function getChatById(chatId) {
-//     return firebaseService.getEntityById(chatId)
-//   }
-  
-//   async function saveChat(chat) {
-//     return firebaseService.saveEntity(chat)
-//   }
-  
-//   async function removeChat(chatId) {
-//     return firebaseService.removeEntity(chatId)
-//   }
+}

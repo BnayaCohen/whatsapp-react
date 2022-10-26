@@ -36,7 +36,7 @@ export function chatReducer(state = INITIAL_STATE, action) {
         case 'UPDATE_CHAT':
             return {
                 ...state,
-                chats: state.chats.map(chat => chat._id === action.chat._id ? action.chat : chat)
+                chats: state.chats.map(chat => chat._id === action.chat._id ? action.chat : chat).sort((c1, c2) => (c2.msgs[c2.msgs.length - 1].sentAt) - (c1.msgs[c1.msgs.length - 1].sentAt))
             }
 
         case 'SET_FILTER_BY':

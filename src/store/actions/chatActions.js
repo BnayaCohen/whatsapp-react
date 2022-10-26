@@ -58,6 +58,7 @@ export function addMessage(chat, msg) {
                 chat.isSeenByUser1 = false
                 chat.isSeenByUser2 = true
             }
+            await chatService.saveChat(chat)
             dispatch({ type: 'UPDATE_CHAT', chat })
         } catch (err) {
             console.log('err:', err)

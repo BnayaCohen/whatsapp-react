@@ -3,6 +3,7 @@ import {
     addDoc, collection, deleteDoc, getDoc, doc,
     getDocs, getFirestore, updateDoc, query, orderBy, startAt, endAt
 } from "firebase/firestore";
+import { userService } from "./userService";
 
 export const firebaseService = {
     queryData,
@@ -13,12 +14,12 @@ export const firebaseService = {
 
 const firebaseConfig = {
     apiKey: "AIzaSyAl6jkW4TSjMyiriijdQL2DGL5C_PFHGME",
-  authDomain: "whatsapp-c415f.firebaseapp.com",
-  projectId: "whatsapp-c415f",
-  storageBucket: "whatsapp-c415f.appspot.com",
-  messagingSenderId: "460845537909",
-  appId: "1:460845537909:web:6c0d0006587e3ba820b63c",
-  measurementId: "G-LY6K4B7MBK"
+    authDomain: "whatsapp-c415f.firebaseapp.com",
+    projectId: "whatsapp-c415f",
+    storageBucket: "whatsapp-c415f.appspot.com",
+    messagingSenderId: "460845537909",
+    appId: "1:460845537909:web:6c0d0006587e3ba820b63c",
+    measurementId: "G-LY6K4B7MBK"
 }
 
 // Initialize Firebase
@@ -30,18 +31,18 @@ const db = getFirestore(app);
 //Gets a Collection Reference
 const chatsRef = collection(db, 'chat')
 
-async function queryData(filterBy) {
-    let q = chatsRef
-    if (filterBy?.term) {
-        const txt = filterBy.term.toLowerCase()
-        q = query(chatsRef, orderBy("name"), startAt(txt), endAt(txt + '\uf8ff'))
-    }
+async function queryData(filterBy = { term: '' }) {
+    const q = query(chatsRef)
     try {
         const chatsSnapshot = await getDocs(q)
         // console.log('chatsSnapshot', chatsSnapshot)
-        return chatsSnapshot.docs.map((doc) => {
-            return { _id: doc.id, ...doc.data() }
-        })
+        const chatDocs = chatsSnapshot.docs.map((doc) => ({ _id: doc.id, ...doc.data() }))
+        const currUserId = userService.getUser()._id
+        const regex = new RegExp(filterBy.term, "i")
+        const filteredChats = chatDocs.filter(chat => regex.test(userService.getUserById(
+            chat.user1Id === currUserId ? chat.user2Id : chat.user1Id).name))
+            console.log(filteredChats);
+        return filteredChats.sort((c1, c2) => (c2.msgs[c2.msgs.length - 1].sentAt) - (c1.msgs[c1.msgs.length - 1].sentAt))
     } catch (e) {
         console.error("Error geting documents: ", e);
     }
@@ -62,8 +63,7 @@ async function getChatById(chatId) {
 }
 
 async function saveChat(chat) {
-    delete chat._id
-    if (chat?._id) {
+    if (chat._id) {
         const copyChat = JSON.parse(JSON.stringify(chat))
         const chatRef = doc(chatsRef, chat._id)
         delete copyChat._id
@@ -75,7 +75,6 @@ async function saveChat(chat) {
         }
     } else {
         try {
-            console.log(chat);
             const newChat = await addDoc(chatsRef, chat)
             return { _id: newChat.id, ...newChat }
         } catch (e) {
