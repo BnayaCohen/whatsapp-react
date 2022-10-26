@@ -42,7 +42,7 @@ async function queryData(filterBy = { term: '' }) {
         const filteredChats = chatDocs.filter(chat => regex.test(userService.getUserById(
             chat.user1Id === currUserId ? chat.user2Id : chat.user1Id).name))
             console.log(filteredChats);
-        return filteredChats.sort((c1, c2) => (c2.msgs[c2.msgs.length - 1].sentAt) - (c1.msgs[c1.msgs.length - 1].sentAt))
+        return filteredChats.sort((c1, c2) => (c2.msgs[c2.msgs.length - 1]?.sentAt||0) - (c1.msgs[c1.msgs.length - 1]?.sentAt||0))
     } catch (e) {
         console.error("Error geting documents: ", e);
     }

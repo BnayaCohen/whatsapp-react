@@ -21,10 +21,10 @@ export function ChatPreview({ chat, currUserId }) {
           <div className="user-img" style={chatUserStyle}></div>
           <div>
             <h3>{currChatUser.name}</h3>
-            <p className='last-msg'>{chat.msgs[chat.msgs.length - 1].content}</p>
+            <p className='last-msg'>{chat.msgs[chat.msgs.length - 1]?.content}</p>
           </div>
         </div>
-        <p className='last-msg-time'>{new Date(chat.msgs[chat.msgs.length - 1].sentAt).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 5)}</p>
+        <p className='last-msg-time'>{new Date(chat.msgs[chat.msgs.length - 1]?.sentAt).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 5)}</p>
       </Link>
     </article>
   )
