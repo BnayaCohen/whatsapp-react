@@ -1,7 +1,6 @@
 import { chatService } from "../../services/chatService"
 import { userService } from "../../services/userService"
 
-
 export function loadChats() {
 
     return async (dispatch, getState) => {

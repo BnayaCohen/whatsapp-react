@@ -48,6 +48,10 @@ function getUserById(userId){
   return users.find(user => user._id === userId)
 }
 
+function isPhoneExist(phone){
+  return users.some(user => user.phone === phone)
+}
+
 function signup(name) {
   const user = {
     name,
@@ -63,6 +67,7 @@ function logout() {
 export const userService = {
   getUser,
   getUserById,
+  isPhoneExist,
   signup,
   logout,
 }
