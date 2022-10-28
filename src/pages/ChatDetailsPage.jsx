@@ -11,8 +11,9 @@ import { ReactComponent as SendMsgIcon } from '../assets/imgs/sendMsgIcon.svg'
 export function ChatDetailsPage() {
 
   const [msgInput, setMsgInput] = useState('')
+  const { users } = useSelector((state => state.userModule))
   const currUser = useSelector(state => state.userModule.loggedInUser)
-  const currChat = useSelector((state => state.chatModule.currChat))
+  const { currChat } = useSelector((state => state.chatModule))
   const dispatch = useDispatch()
   const params = useParams()
 
@@ -36,8 +37,10 @@ export function ChatDetailsPage() {
   }
 
   if (!currChat) return <div>Loading...</div>
-  const chatUser = userService.getUserById(currChat.user1Id === currUser._id ? currChat.user2Id : currChat.user1Id)
+  const userChatId = currChat.user1Id === currUser._id ? currChat.user2Id : currChat.user1Id
+  const chatUser = users.find(user => user._id === userChatId)
   const chatUserStyle = { backgroundImage: `url(https://robohash.org/${chatUser._id})` }
+
   return (
     <article className='chat-details flex column space-between'>
       <section className='chat-header flex align-center'>

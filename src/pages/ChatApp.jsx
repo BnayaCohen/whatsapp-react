@@ -4,18 +4,19 @@ import { Outlet, useParams } from 'react-router-dom'
 import { ChatFilter } from '../cmps/ChatFilter'
 import { ChatList } from '../cmps/ChatList'
 import { loadChats, setFilterBy } from '../store/actions/chatActions'
-import { loadUser } from '../store/actions/userActions'
+import { loadUser, loadUsers } from '../store/actions/userActions'
 import { ReactComponent as NewChat } from '../assets/imgs/NewChatIcon.svg'
 import { ReactComponent as NoChatLogo } from '../assets/imgs/NoChatLogo.svg'
 
 export function ChatApp() {
 
     const currUser = useSelector(state => state.userModule.loggedInUser)
-    const chats = useSelector(state => state.chatModule.chats)
+    const { chats } = useSelector(state => state.chatModule)
     const dispatch = useDispatch()
     const params = useParams()
 
     useEffect(() => {
+        dispatch(loadUsers())
         dispatch(loadUser())
         dispatch(loadChats())
     }, [])

@@ -1,7 +1,19 @@
 import { userService } from '../../services/userService.js'
 
+export function loadUsers() {
+
+    return async (dispatch, getState) => {
+        try {
+            const users = await userService.query()
+            dispatch({ type: 'SET_USERS', users })
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
+
 export function loadUser() {
-    return (dispatch,getState) => {
+    return (dispatch, getState) => {
         const user = userService.getUser()
         dispatch({ type: 'SET_USER', user })
     }

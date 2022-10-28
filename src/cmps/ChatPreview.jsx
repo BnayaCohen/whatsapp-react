@@ -1,19 +1,21 @@
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { userService } from '../services/userService'
 
 export function ChatPreview({ chat, currUserId }) {
 
-  const currChat = useSelector(state => state.chatModule.currChat)
+  const { users } = useSelector(state => state.userModule)
+  const { currChat } = useSelector(state => state.chatModule)
 
   const chatUserIdNum = chat.user1Id === currUserId ? 2 : 1
-  const currChatUser = userService.getUserById(chat[`user${chatUserIdNum}Id`])
+  const currChatUser = users.find(user => user._id === chat[`user${chatUserIdNum}Id`])
 
+  // Setting classes for the message preview
   let chatPreviewClass = 'chat-preview '
   if (!chat[`isSeenByUser${chatUserIdNum === 2 ? 1 : 2}`]) chatPreviewClass += 'has-new-msgs '
   if (currChat?._id === chat._id) chatPreviewClass += 'selected-chat'
 
   const chatUserStyle = { backgroundImage: `url(https://robohash.org/${currChatUser._id})` }
+
   return (
     <article className={chatPreviewClass}>
       <Link className="flex align-center space-between" to={`/chat/${chat._id}`}>
