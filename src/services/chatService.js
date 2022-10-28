@@ -8,6 +8,53 @@ export const chatService = {
     getEmptyChat
 }
 
+async function query(filterBy) {
+    return await firebaseService.chatsQueryData(filterBy)
+}
+
+async function getChatById(chatId) {
+    return await firebaseService.getChatById(chatId)
+}
+
+async function removeChat(chatId) {
+    return await firebaseService.removeChat(chatId)
+}
+
+function saveChat(chat) {
+    return firebaseService.saveChat(chat)
+}
+
+function getEmptyChat() {
+    return {
+        user1Id: '',
+        user2Id: '',
+        isSeenByUser1: true,
+        isSeenByUser2: true,
+        msgs: [{
+            content: '',
+            sentAt: Date.now(),
+            userId: ''
+        }]
+    }
+}
+
+function _makeId(length = 10) {
+    var txt = ''
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length))
+    }
+    return txt
+}
+
+function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+}
+
 // const chats = [
 //     {
 //         "_id": "5a56b32ca",
@@ -59,50 +106,3 @@ export const chatService = {
 //         }]
 //     },
 // ]
-
-async function query(filterBy) {
-    return await firebaseService.chatsQueryData(filterBy)
-}
-
-async function getChatById(chatId) {
-    return await firebaseService.getChatById(chatId)
-}
-
-async function removeChat(chatId) {
-    return await firebaseService.removeChat(chatId)
-}
-
-function saveChat(chat) {
-    return firebaseService.saveChat(chat)
-}
-
-function getEmptyChat() {
-    return {
-        user1Id: '',
-        user2Id: '',
-        isSeenByUser1: true,
-        isSeenByUser2: true,
-        msgs: [{
-            content: '',
-            sentAt: Date.now(),
-            userId: ''
-        }]
-    }
-}
-
-function _makeId(length = 10) {
-    var txt = ''
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length))
-    }
-    return txt
-}
-
-function debounce(func, timeout = 300) {
-    let timer;
-    return (...args) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => { func.apply(this, args); }, timeout);
-    };
-}

@@ -47,18 +47,12 @@ a {
 
 input {
   font-family: inherit;
-  text-align: inherit;
-  text-align: left;
-  width: 230px;
-  border-radius: 5px;
   outline: #fff;
-  background-color: #00000009;
+  background-color: #f0f2f5;
   border: 1px solid #fff;
+  border-radius: 8px;
   padding: 5px 8px;
-
-  &:focus {
-    border: 1px solid rgb(158, 158, 158);
-  }
+  height: 35px;
 }
 
 // MAC like scrollbar

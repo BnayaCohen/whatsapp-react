@@ -7,11 +7,13 @@ import { loadChats, setFilterBy } from '../store/actions/chatActions'
 import { loadUser, loadUsers } from '../store/actions/userActions'
 import { ReactComponent as NewChat } from '../assets/imgs/NewChatIcon.svg'
 import { ReactComponent as NoChatLogo } from '../assets/imgs/NoChatLogo.svg'
+import { NewChatModal } from '../cmps/NewChatModal'
 
 export function ChatApp() {
 
     const currUser = useSelector(state => state.userModule.loggedInUser)
     const { chats } = useSelector(state => state.chatModule)
+    const [isNewChatModalOpen, setToggleNewChatModal] = useState(false)
     const dispatch = useDispatch()
     const params = useParams()
 
@@ -26,6 +28,10 @@ export function ChatApp() {
         dispatch(loadChats())
     }
 
+    const toggleNewChatModal = () => {
+        setToggleNewChatModal(!isNewChatModalOpen)
+    }
+
     if (!currUser) return <div>Loading...</div>
     const userStyle = { backgroundImage: `url(https://robohash.org/${currUser._id})` }
     return (
@@ -36,7 +42,8 @@ export function ChatApp() {
                         <div className="user-img" style={userStyle}></div>
                         <h4 className='user-name'>{currUser.name}</h4>
                     </div>
-                    <NewChat className='new-chat-btn' />
+                    <NewChat className='new-chat-btn' onClick={toggleNewChatModal} />
+                    {isNewChatModalOpen && <NewChatModal toggleNewChatModal={toggleNewChatModal} />}
                 </article>
 
                 <ChatFilter onChangeFilter={onChangeFilter} />

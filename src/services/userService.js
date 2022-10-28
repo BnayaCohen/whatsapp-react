@@ -1,7 +1,6 @@
 import { storageService } from './storageService.js'
 import { firebaseService } from './firebaseService.js'
 
-
 const USER_KEY = 'loggedInUser'
 
 async function query(){
