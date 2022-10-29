@@ -44,8 +44,9 @@ async function chatsQueryData(filterBy = { term: '' }) {
         const chatDocs = chatsSnapshot.docs.map((doc) => ({ _id: doc.id, ...doc.data() }))
         const currUserId = userService.getUser()._id
         const regex = new RegExp(filterBy.term, "i")
-        const filteredChats = chatDocs.filter(chat => regex.test(userService.getUserById(
-            chat.user1Id === currUserId ? chat.user2Id : chat.user1Id).name))
+        const filteredChats = await Promise.all(chatDocs.map(chat => userService.getUserById(chat.user1Id === currUserId ? chat.user2Id : chat.user1Id)))
+            .then((usersMap) => chatDocs.filter((_v, i) => regex.test(usersMap[i].name)))
+
         return filteredChats.sort((c1, c2) => (c2.msgs[c2.msgs.length - 1]?.sentAt || 0) - (c1.msgs[c1.msgs.length - 1]?.sentAt || 0))
     } catch (e) {
         console.error("Error geting documents: ", e);

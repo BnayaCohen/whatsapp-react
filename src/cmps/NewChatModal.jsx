@@ -8,10 +8,12 @@ export function NewChatModal({ currUserId, toggleNewChatModal }) {
 
   const [phoneInput, setPhone] = useState('')
   const { users } = useSelector(state => state.userModule)
+  let usersToShow=[...users]
   const { chats } = useSelector(state => state.chatModule)
 
   const handleChange = ({ target }) => {
     setPhone(() => target.value)
+    usersToShow=users.filter(user=>user.phone.includes(phoneInput))
   }
 
   const onStartNewChat = () => {
@@ -32,8 +34,8 @@ export function NewChatModal({ currUserId, toggleNewChatModal }) {
       </div>
     </form>
     <article className='user-list'>
-      {users.map(user =>
-        <div className="flex align-center" key={user._id}>
+      {usersToShow.map(user =>
+        <div className="user-preview flex align-center" key={user._id}>
           <div className="user-img" style={{ backgroundImage: `url(https://robohash.org/${user._id})`,margin:'4px 0' }}></div>
           <h1>{user.name}</h1>
         </div>

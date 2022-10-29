@@ -90,11 +90,15 @@
 
     h2 {
       margin-left: 8px;
-      margin-bottom: 6px;
+      font-size: 1.7rem;
+      font-weight: 300;
+      color: #41525d;
     }
 
     input {
       width: 90%;
+      color: #54656f;
+      margin: 6px 0;
     }
 
     svg {
@@ -102,9 +106,10 @@
     }
   }
 
-  .user-list{
-    h1{
-      // font-size: 40px;
+  .user-list {
+    
+    .user-preview{
+      border-top: 1px solid #e9edef;
     }
   }
 }
