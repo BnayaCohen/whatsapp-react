@@ -39,7 +39,7 @@ function signup(name, phone, status) {
     lastSeen: Date.now(),
   }
   firebaseService.saveUser(user)
-  storageService.store(USER_KEY, user)
+  // storageService.store(USER_KEY, user)
   return user
 }
 
@@ -62,7 +62,6 @@ export const userService = {
 //     "name": "Ochoa Hyde",
 //     "status": 'Available',
 //     "lastSeen": 1665907316799,
-//     "Photo": null
 //   },
 //   {
 //     "_id": "5a5664025f6ae9aa24a99fde",
@@ -70,7 +69,6 @@ export const userService = {
 //     "name": "Hallie Mclean",
 //     "status": 'Available',
 //     "lastSeen": 1665907359136,
-//     "Photo": null
 //   },
 //   {
 //     "_id": "5a56640252d6acddd183d319",
@@ -78,6 +76,5 @@ export const userService = {
 //     "name": "Parsons Norris",
 //     "status": 'Available',
 //     "lastSeen": 1665907277183,
-//     "Photo": null
 //   },
 // ]

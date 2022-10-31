@@ -73,7 +73,7 @@
     top: 10px;
     left: 10px;
     width: 50%;
-    background-color: #fff;
+    background-color:#fafafa;
     padding: 10px 10px;
     border-radius: 6px;
     box-shadow: 0 0px 2px 0px rgb(11, 19, 25, 0.19);
@@ -96,7 +96,7 @@
     }
 
     input {
-      width: 90%;
+      width: 100%;
       color: #54656f;
       margin: 6px 0;
     }
@@ -107,16 +107,23 @@
   }
 
   .user-list {
-    
-    .user-preview{
+    height: 80vh;
+    overflow: auto;
+
+    .user-preview {
       border-top: 1px solid #e9edef;
       cursor: pointer;
       border-radius: 4px;
       padding: 3px 2px;
       gap: 4px;
 
-      &:hover{
+      &:hover {
         background-color: #f5f6f6;
+      }
+
+      .user-status {
+        font-size: .7rem;
+        color: #8696a0;
       }
     }
   }

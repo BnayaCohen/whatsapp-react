@@ -65,6 +65,18 @@ export function addMessage(chat, msg) {
     }
 }
 
+export function saveChat(chat) {
+
+    return async (dispatch) => {
+        try {
+            await chatService.saveChat(chat)
+            dispatch({ type: 'UPDATE_CHAT', chat })
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
+
 export function setFilterBy(filterBy) {
 
     return (dispatch) => {

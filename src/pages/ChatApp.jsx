@@ -43,7 +43,7 @@ export function ChatApp() {
                         <h4 className='user-name'>{currUser.name}</h4>
                     </div>
                     <NewChat className='new-chat-btn' onClick={toggleNewChatModal} />
-                    {isNewChatModalOpen && <NewChatModal toggleNewChatModal={toggleNewChatModal} />}
+                    {isNewChatModalOpen && <NewChatModal currUserId={currUser._id} toggleNewChatModal={toggleNewChatModal} />}
                 </article>
 
                 <ChatFilter onChangeFilter={onChangeFilter} />
