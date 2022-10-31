@@ -20,8 +20,8 @@ async function removeChat(chatId) {
     return await firebaseService.removeChat(chatId)
 }
 
-function saveChat(chat) {
-    return firebaseService.saveChat(chat)
+async function saveChat(chat) {
+    return await firebaseService.saveChat(chat)
 }
 
 function getEmptyChat() {

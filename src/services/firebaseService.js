@@ -106,6 +106,7 @@ async function saveChat(chat) {
     } else {
         try {
             const newChat = await addDoc(chatsRef, chat)
+            console.log(newChat);
             return { _id: newChat.id, ...newChat }
         } catch (e) {
             console.error("Error saving document: ", e);

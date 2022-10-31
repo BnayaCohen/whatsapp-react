@@ -18,14 +18,14 @@ export function loadChat(chatId, userId) {
 
     return async (dispatch) => {
         try {
-            const chat = await chatService.getChatById(chatId)
-            if (chat.user1Id === userId) {
-                chat.isSeenByUser1 = true
+            const currChat = await chatService.getChatById(chatId)
+            if (currChat.user1Id === userId) {
+                currChat.isSeenByUser1 = true
             } else {
-                chat.isSeenByUser2 = true
+                currChat.isSeenByUser2 = true
             }
-            dispatch({ type: 'UPDATE_CHAT', chat })
-            dispatch({ type: 'SET_CHAT', chat }) 
+            // await chatService.saveChat(currChat)
+            dispatch({ type: 'SET_CHAT', chat: currChat })
         } catch (err) {
             console.log('err:', err)
         }
@@ -65,12 +65,14 @@ export function addMessage(chat, msg) {
     }
 }
 
-export function saveChat(chat) {
+export function addChat(chat) {
 
     return async (dispatch) => {
         try {
-            await chatService.saveChat(chat)
-            dispatch({ type: 'UPDATE_CHAT', chat })
+            const newChat = await chatService.saveChat(chat)
+            // dispatch({ type: 'ADD_CHAT', chat })
+            console.log(newChat);
+            return newChat
         } catch (err) {
             console.log('err:', err)
         }

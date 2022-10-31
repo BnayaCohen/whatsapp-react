@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { addChat } from "../store/actions/chatActions"
 
 export function NewChatModal({ currUserId, toggleNewChatModal }) {
 
@@ -9,6 +10,7 @@ export function NewChatModal({ currUserId, toggleNewChatModal }) {
   const { chats } = useSelector(state => state.chatModule)
   let [usersToShow, setUsersToShow] = useState([...users])
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleChange = ({ target }) => {
     setPhone(() => target.value)
@@ -16,13 +18,19 @@ export function NewChatModal({ currUserId, toggleNewChatModal }) {
     setUsersToShow(() => users.filter(user => (regex.test(user.phone) || regex.test(user.name))))
   }
 
-  const onStartNewChat = (userId) => {
-    console.log(chats);
+  const onStartNewChat = async (userId) => {
     const selectedChat = chats.find(chat => (chat.user1Id === userId && chat.user2Id === currUserId)
       || (chat.user2Id === userId && chat.user1Id === currUserId))
     if (selectedChat) { navigate('/chat/' + selectedChat._id) }
     else {
-
+      const { _id } = await dispatch(addChat({
+        user1Id: currUserId,
+        user2Id: userId,
+        IsSeenByUser1: true,
+        IsSeenByUser2: false,
+        msgs: []
+      }))
+      navigate('/chat/' + _id)
     }
     toggleNewChatModal()
   }
