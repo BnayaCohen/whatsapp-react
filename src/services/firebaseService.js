@@ -135,7 +135,7 @@ async function saveUser(user) {
 
 async function removeChat(chatId) {
     try {
-        await deleteDoc(doc(chatsRef, chatId))
+        return await deleteDoc(doc(chatsRef, chatId))
     } catch (e) {
         console.error("Error deleting document: ", e);
     }

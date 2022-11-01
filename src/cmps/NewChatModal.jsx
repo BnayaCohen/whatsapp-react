@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { addChat } from "../store/actions/chatActions"
+import { addChat, loadChats } from "../store/actions/chatActions"
 
 export function NewChatModal({ currUserId, toggleNewChatModal }) {
 
@@ -38,7 +38,7 @@ export function NewChatModal({ currUserId, toggleNewChatModal }) {
   return (<section className='new-chat-modal'>
     <form onSubmit={onStartNewChat}>
       <p className="close-btn" onClick={toggleNewChatModal}>X</p>
-      <h2>Start a new chat</h2>
+      <h2>Start new chat</h2>
 
       <input value={phoneInput} onChange={handleChange} type="text" placeholder='Search by phone or name' />
     </form>

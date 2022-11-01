@@ -24,7 +24,8 @@ export function loadChat(chatId, userId) {
             } else {
                 currChat.isSeenByUser2 = true
             }
-            // await chatService.saveChat(currChat)
+            await chatService.saveChat(currChat)
+            dispatch({ type: 'UPDATE_CHAT', chat: currChat })
             dispatch({ type: 'SET_CHAT', chat: currChat })
         } catch (err) {
             console.log('err:', err)
@@ -70,8 +71,7 @@ export function addChat(chat) {
     return async (dispatch) => {
         try {
             const newChat = await chatService.saveChat(chat)
-            // dispatch({ type: 'ADD_CHAT', chat })
-            console.log(newChat);
+            dispatch({ type: 'ADD_CHAT', chat: newChat })
             return newChat
         } catch (err) {
             console.log('err:', err)

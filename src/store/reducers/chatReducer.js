@@ -24,7 +24,7 @@ export function chatReducer(state = INITIAL_STATE, action) {
         case 'ADD_CHAT':
             return {
                 ...state,
-                chats: [...state.chats, action.chat]
+                chats: [ action.chat,...state.chats]
             }
 
         case 'REMOVE_CHAT':

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadChat, addMessage } from '../store/actions/chatActions'
+import { loadChat, addMessage, removeChat } from '../store/actions/chatActions'
 import { updateUser } from '../store/actions/userActions'
 import { userService } from '../services/userService.js'
 import { MsgList } from '../cmps/MsgList'
@@ -19,13 +19,20 @@ export function ChatDetailsPage() {
 
   useEffect(() => {
     dispatch(loadChat(params.id, currUser._id))
+    return () => {
+      if (currChat?.msgs.length === 0) {
+        console.log('removing chat');
+        dispatch(removeChat(currChat._id))
+      }
+    }
   }, [params.id])
 
   const handleChange = ({ target }) => {
     setMsgInput(() => target.value)
   }
 
-  const addMsg = () => {
+  const addMsg = (ev) => {
+    ev.preventDefault()
     if (!msgInput) return
     const newMsg = { content: msgInput, sentAt: Date.now(), userId: currUser._id }
     dispatch(addMessage(currChat, newMsg))

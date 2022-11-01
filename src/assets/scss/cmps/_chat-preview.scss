@@ -1,6 +1,7 @@
 .chat-preview {
     cursor: pointer;
     width: 100%;
+    height: 72px;
     padding: 12px;
     border-top: 1px solid #e9edef;
 
@@ -29,11 +30,12 @@
     }
 
     .last-msg {
-        min-height: 20px;
+        width: 220px;
         font-size: 14px;
         font-weight: inherit;
         line-height: 20px;
         color: #667781;
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -49,7 +51,8 @@
     }
 
 }
-.has-new-msgs{
+
+.has-new-msgs {
     font-weight: 500;
 
     .last-msg-time {
@@ -58,6 +61,6 @@
     }
 }
 
-.selected-chat{
-    background-color: #f0f2f5!important;
+.selected-chat {
+    background-color: #f0f2f5 !important;
 }
