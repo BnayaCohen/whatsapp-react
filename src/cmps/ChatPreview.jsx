@@ -26,7 +26,7 @@ export function ChatPreview({ chat, currUserId }) {
             <p className='last-msg'>{chat.msgs[chat.msgs.length - 1]?.content}</p>
           </div>
         </div>
-        <p className='last-msg-time'>{new Date(chat.msgs[chat.msgs.length - 1]?.sentAt).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 5)}</p>
+        <p className='last-msg-time'>{chat.msgs.length !== 0 && new Date(chat.msgs[chat.msgs.length - 1]?.sentAt).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 8)}</p>
       </Link>
     </article>
   )

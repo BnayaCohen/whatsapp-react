@@ -2,7 +2,6 @@ import { HashRouter as Router, Navigate, Route, Routes } from 'react-router-dom'
 
 import './assets/scss/styles.scss'
 import { AppHeader } from './cmps/AppHeader';
-// import { SignupPage } from './pages/SignupPage';
 import { HomePage } from './pages/HomePage';
 import { ChatApp } from './pages/ChatApp';
 import { ChatDetailsPage } from './pages/ChatDetailsPage';
@@ -21,14 +20,14 @@ function App() {
 
                 <main className='container'>
                     <Routes>
-                        <Route path='/' element={<ChatApp />}>
-                           <Route path='/chat/:id' element={
-                            <PrivateRoute>
-                                <ChatDetailsPage />
-                            </PrivateRoute>
-                        } /> 
+                        <Route path='/' element={<HomePage />} />
+                        <Route path='/chat' element={<ChatApp />}>
+                            <Route path='/chat/:id' element={
+                                <PrivateRoute>
+                                    <ChatDetailsPage />
+                                </PrivateRoute>
+                            } />
                         </Route>
-                        {/* <Route path='/signup' element={<SignupPage />} /> */}
                     </Routes>
                 </main>
             </div>

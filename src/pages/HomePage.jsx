@@ -4,30 +4,29 @@ import { Link, useNavigate } from 'react-router-dom'
 import { loadUser, logout } from '../store/actions/userActions'
 
 export function HomePage() {
-  // const [chat, setChat] = useState([])
-  const user = useSelector(state => state.userModule.loggedInUser)
+  const currUser = useSelector(state => state.userModule.loggedInUser)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
     (async () => {
-      if (!user) {
+      if (!currUser) {
         dispatch(loadUser())
         return
       }
     })()
 
-  }, [user])
+  }, [currUser])
 
   const onLogout = () => {
     dispatch(logout())
     navigate('/signup')
   }
 
-  if (!user) return <div>Loading...</div>
+  if (!currUser) return <div>Loading...</div>
   return (
     <section className='home-page'>
-      <h1>Welcome {user.name}</h1>
+      <h1>Welcome {currUser.name}</h1>
       <button className='btn' onClick={() => onLogout()}>Logout</button>
     </section>
   )
