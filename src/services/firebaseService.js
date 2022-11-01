@@ -17,13 +17,13 @@ export const firebaseService = {
 }
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAl6jkW4TSjMyiriijdQL2DGL5C_PFHGME",
-    authDomain: "whatsapp-c415f.firebaseapp.com",
-    projectId: "whatsapp-c415f",
-    storageBucket: "whatsapp-c415f.appspot.com",
-    messagingSenderId: "460845537909",
-    appId: "1:460845537909:web:6c0d0006587e3ba820b63c",
-    measurementId: "G-LY6K4B7MBK"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 }
 
 // Initialize Firebase
@@ -46,7 +46,6 @@ async function chatsQueryData(filterBy = { term: '' }) {
         const regex = new RegExp(filterBy.term, "i")
         const filteredChats = await Promise.all(chatDocs.map(chat => userService.getUserById(chat.user1Id === currUserId ? chat.user2Id : chat.user1Id)))
             .then((usersMap) => chatDocs.filter((_v, i) => regex.test(usersMap[i].name)))
-
         return filteredChats.sort((c1, c2) => (c2.msgs[c2.msgs.length - 1]?.sentAt || 0) - (c1.msgs[c1.msgs.length - 1]?.sentAt || 0))
     } catch (e) {
         console.error("Error geting documents: ", e);
@@ -106,8 +105,7 @@ async function saveChat(chat) {
     } else {
         try {
             const newChat = await addDoc(chatsRef, chat)
-            console.log(newChat);
-            return { _id: newChat.id, ...newChat }
+            return { _id: newChat.id, ...chat }
         } catch (e) {
             console.error("Error saving document: ", e);
         }
@@ -128,7 +126,7 @@ async function saveUser(user) {
     } else {
         try {
             const newUser = await addDoc(usersRef, user)
-            return { _id: newUser.id, ...newUser }
+            return { _id: newUser.id, ...user }
         } catch (e) {
             console.error("Error saving document: ", e);
         }
