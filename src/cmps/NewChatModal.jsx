@@ -26,8 +26,8 @@ export function NewChatModal({ currUserId, toggleNewChatModal }) {
       const { _id } = await dispatch(addChat({
         user1Id: currUserId,
         user2Id: userId,
-        IsSeenByUser1: true,
-        IsSeenByUser2: false,
+        isSeenByUser1: true,
+        isSeenByUser2: false,
         msgs: []
       }))
       navigate('/chat/' + _id)

@@ -26,9 +26,9 @@ async function getUserById(userId) {
   // return users.find(user => user._id === userId)
 }
 
-function isPhoneExist(phone) {
-  const users = firebaseService.usersQueryData()
-  return users.some(user => user.phone === phone)
+async function isPhoneExist(phone) {
+  const users = await firebaseService.usersQueryData()
+  return users.find(user => user.phone === phone)
 } 
 
 function signup(name, phone, status) {
@@ -43,6 +43,11 @@ function signup(name, phone, status) {
   return user
 }
 
+function login(user) {
+  storageService.store(USER_KEY, user)
+  return user
+}
+
 function logout() {
   storageService.remove(USER_KEY)
 }
@@ -53,6 +58,7 @@ export const userService = {
   getUserById,
   isPhoneExist,
   signup,
+  login,
   logout,
 }
 

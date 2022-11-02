@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { loadUser, logout } from '../store/actions/userActions'
+import { userService } from '../services/userService'
+import { loadUser, login, logout } from '../store/actions/userActions'
 
 export function HomePage() {
+  const [phoneInput, setPhoneInput] = useState('')
   const currUser = useSelector(state => state.userModule.loggedInUser)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -18,16 +20,28 @@ export function HomePage() {
 
   }, [currUser])
 
-  const onLogout = () => {
-    dispatch(logout())
-    navigate('/signup')
+  const handleChange = ({ target }) => {
+    setPhoneInput(() => target.value)
+  }
+
+  const onLogin = async (ev) => {
+    ev.preventDefault()
+    const user = await userService.isPhoneExist(phoneInput)
+    if (!user) return
+    console.log(user);
+    dispatch(login(user))
+    navigate('/chat')
   }
 
   if (!currUser) return <div>Loading...</div>
   return (
     <section className='home-page'>
-      <h1>Welcome {currUser.name}</h1>
-      <button className='btn' onClick={() => onLogout()}>Logout</button>
+      <img src="https://static.facebook.com/images/whatsapp/www/whatsapp-promo.png" alt="" />
+      <form onSubmit={onLogin}>
+        <input value={phoneInput} onChange={handleChange} type="text" name="term" placeholder='Enter your phone number' />
+        <button className='btn'>Log In</button>
+      </form>
+      {/* <button className='btn'>Sign Up</button> */}
     </section>
   )
 }

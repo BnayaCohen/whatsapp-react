@@ -25,6 +25,13 @@ export function updateUser(user) {
     }
 }
 
+export function login(user) {
+    return async (dispatch) => {
+        userService.login(user)
+        dispatch({ type: 'SET_USER', user })
+    }
+}
+
 export function logout() {
     return async (dispatch) => {
         userService.logout()
