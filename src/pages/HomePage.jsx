@@ -28,7 +28,7 @@ export function HomePage() {
     ev.preventDefault()
     const user = await userService.isPhoneExist(phoneInput)
     if (!user) return
-    console.log(user);
+
     dispatch(login(user))
     navigate('/chat')
   }
