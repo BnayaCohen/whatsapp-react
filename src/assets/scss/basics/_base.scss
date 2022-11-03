@@ -36,9 +36,17 @@ a {
 }
 
 .btn {
+  cursor: pointer;
+  font-family: inherit;
+  background-color: #f5f6f6;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 4px 8px;
+  height: 34px;
 
   &:hover {
     text-decoration: none;
+    background-color: #f0f2f5;
   }
 
   * {

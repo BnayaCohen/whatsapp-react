@@ -57,7 +57,7 @@ export function ChatApp() {
                 {params.id ? <Outlet /> :
                     <div className='empty-chat-details flex column align-center justify-center'>
                         <NoChatLogo className='empty-chat-logo' />
-                        <h1>WhatsApp Web</h1>
+                        <h1>WusApp Web</h1>
                         <div className='empty-chat-intro'>You can send messages without kepping the phone connected.</div>
                     </div>
                 }

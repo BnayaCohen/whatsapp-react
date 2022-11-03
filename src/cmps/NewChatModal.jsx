@@ -13,9 +13,9 @@ export function NewChatModal({ currUserId, toggleNewChatModal }) {
   const dispatch = useDispatch()
 
   const handleChange = ({ target }) => {
-    setPhone(() => target.value)
+    setPhone(target.value)
     const regex = new RegExp(target.value, 'i')
-    setUsersToShow(() => users.filter(user => (regex.test(user.phone) || regex.test(user.name))))
+    setUsersToShow(users.filter(user => (regex.test(user.phone) || regex.test(user.name))))
   }
 
   const onStartNewChat = async (userId) => {

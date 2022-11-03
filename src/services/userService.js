@@ -3,7 +3,7 @@ import { firebaseService } from './firebaseService.js'
 
 const USER_KEY = 'loggedInUser'
 
-async function query(){
+async function query() {
   return await firebaseService.usersQueryData()
 }
 
@@ -29,17 +29,17 @@ async function getUserById(userId) {
 async function isPhoneExist(phone) {
   const users = await firebaseService.usersQueryData()
   return users.find(user => user.phone === phone)
-} 
+}
 
-function signup(name, phone, status) {
-  const user = {
+async function signup(phone, name, status) {
+  let user = {
     phone,
     name,
     status,
     lastSeen: Date.now(),
   }
-  firebaseService.saveUser(user)
-  // storageService.store(USER_KEY, user)
+  user = await firebaseService.saveUser(user)
+  storageService.store(USER_KEY, user)
   return user
 }
 

@@ -4,7 +4,9 @@ export function loadUsers() {
 
     return async (dispatch, getState) => {
         try {
-            const users = await userService.query()
+            const currUser = userService.getUser()
+            let users = await userService.query()
+            users = users.filter(user => user._id !== currUser._id)
             dispatch({ type: 'SET_USERS', users })
         } catch (err) {
             console.log('err:', err)
@@ -39,9 +41,9 @@ export function logout() {
     }
 }
 
-export function signup(name) {
+export function signup(phone, name, status) {
     return async (dispatch) => {
-        const user = userService.signup(name)
+        const user = await userService.signup(phone, name, status)
         dispatch({ type: 'SET_USER', user })
     }
 }

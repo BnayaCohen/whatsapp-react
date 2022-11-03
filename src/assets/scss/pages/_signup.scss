@@ -1,0 +1,29 @@
+.signup-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  text-align: center;
+  padding: 26px 70px;
+  box-shadow: 0 17px 50px 0 rgba(11, 20, 26, .19), 0 12px 15px 0 rgba(11, 20, 26, .24);
+  background-color: #fff;
+  border-radius: 3px;
+
+  >h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 30px;
+    font-weight: 300;
+    color: #41525d;
+  }
+
+  input{
+    margin-bottom: 12px;
+    width: 250px;
+  }
+
+  .form-input{
+    text-align: left;
+  }
+}
