@@ -58,7 +58,7 @@ export function ChatApp() {
                     <div className='empty-chat-details flex column align-center justify-center'>
                         <NoChatLogo className='empty-chat-logo' />
                         <h1>WusApp Web</h1>
-                        <div className='empty-chat-intro'>You can send messages without kepping the phone connected.</div>
+                        <div className='empty-chat-intro'>You can send messages without keeping the phone connected.</div>
                     </div>
                 }
             </section>
