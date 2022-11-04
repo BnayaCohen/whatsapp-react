@@ -47,6 +47,7 @@ export function HomePage() {
         <input ref={phoneInputRef} type="text" placeholder='Enter your phone number' />
         <button className='btn'>Log In</button>
       </form>
+        <button className='btn'>Sign Up</button>
       <Outlet context={onSignup} />
     </section>
   )
