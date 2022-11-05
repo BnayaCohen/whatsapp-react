@@ -41,7 +41,7 @@ async function chatsQueryData(filterBy = { term: '' }) {
     try {
         const chatsSnapshot = await getDocs(q)
         // console.log('chatsSnapshot', chatsSnapshot)
-        const currUserId = userService.getUser()._id
+        const currUserId = await userService.getUser()._id
         const chatDocs = chatsSnapshot.docs.map((doc) => ({ _id: doc.id, ...doc.data() }))
             .filter(chat => chat.user1Id === currUserId || chat.user2Id === currUserId)
         const regex = new RegExp(filterBy.term, "i")

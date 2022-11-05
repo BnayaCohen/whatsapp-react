@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { addChat, loadChats } from "../store/actions/chatActions"
+import { addChat } from "../store/actions/chatActions"
 
 export function NewChatModal({ currUserId, toggleNewChatModal }) {
 

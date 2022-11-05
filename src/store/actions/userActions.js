@@ -4,7 +4,7 @@ export function loadUsers() {
 
     return async (dispatch, getState) => {
         try {
-            const currUser = userService.getUser()
+            const currUser = await userService.getUser()
             let users = await userService.query()
             users = users.filter(user => user._id !== currUser._id)
             dispatch({ type: 'SET_USERS', users })
@@ -15,8 +15,8 @@ export function loadUsers() {
 }
 
 export function loadUser() {
-    return (dispatch, getState) => {
-        const user = userService.getUser()
+    return async (dispatch, getState) => {
+        const user = await userService.getUser()
         dispatch({ type: 'SET_USER', user })
         return user
     }
@@ -31,6 +31,7 @@ export function updateUser(user) {
 export function login(user) {
     return async (dispatch) => {
         user.lastSeen = Date.now()
+        console.log(user);
         userService.login(user)
         dispatch({ type: 'SET_USER', user })
     }

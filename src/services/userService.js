@@ -7,14 +7,14 @@ async function query() {
   return await firebaseService.usersQueryData()
 }
 
-function getUser() {
+async function getUser() {
   let user = storageService.load(USER_KEY)
   if (user) {
     user.lastSeen = Date.now()
     firebaseService.saveUser(user)
     return user
   }
-  else user = getUserById('5a566402183d319')
+  else user = await getUserById('5a566402183d319')
 
   storageService.store(USER_KEY, user)
   return user
@@ -25,9 +25,13 @@ async function getUserById(userId) {
   // return users.find(user => user._id === userId)
 }
 
-async function isPhoneExist(phone) {
+async function getUserByPhone(phone) {
   const users = await firebaseService.usersQueryData()
   return users.find(user => user.phone === phone)
+}
+
+async function removeUser(userId) {
+  await firebaseService.removeUser(userId)
 }
 
 async function signup(phone, name, status) {
@@ -55,7 +59,8 @@ export const userService = {
   query,
   getUser,
   getUserById,
-  isPhoneExist,
+  getUserByPhone,
+  removeUser,
   signup,
   login,
   logout,

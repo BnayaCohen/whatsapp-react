@@ -8,7 +8,7 @@ function load(key, defaultValue = null) {
 }
 
 function remove(key) {
-  localStorage.removeChat(key)
+  localStorage.removeItem(key)
 }
 
 export const storageService = {

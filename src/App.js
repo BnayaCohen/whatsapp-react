@@ -6,12 +6,6 @@ import { HomePage } from './pages/HomePage';
 import { SignupPage } from './pages/SignupPage.jsx';
 import { ChatApp } from './pages/ChatApp';
 import { ChatDetailsPage } from './pages/ChatDetailsPage';
-import { userService } from './services/userService';
-
-const PrivateRoute = ({ children }) => {
-    const currUser = userService.getUser()
-    return currUser ? children : <Navigate to='/' />
-}
 
 function App() {
     return (
@@ -24,11 +18,7 @@ function App() {
                         <Route path='/' element={<HomePage />}>
                             <Route path='/signup' element={<SignupPage />} />
                         </Route>
-                        <Route path='/chat' element={
-                            <PrivateRoute>
-                                <ChatApp />
-                            </PrivateRoute>
-                        }>
+                        <Route path='/chat' element={<ChatApp />}>
                             <Route path='/chat/:id' element={<ChatDetailsPage />} />
                         </Route>
                     </Routes>

@@ -51,7 +51,7 @@ export function addMessage(chat, msg) {
     return async (dispatch) => {
         try {
             chat.msgs.push(msg)
-            if (chat.user1Id === userService.getUser()._id) {
+            if (chat.user1Id === await userService.getUser()._id) {
                 chat.isSeenByUser1 = true
                 chat.isSeenByUser2 = false
             } else {

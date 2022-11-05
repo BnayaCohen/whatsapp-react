@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Outlet, useParams } from 'react-router-dom'
+import { Outlet, useNavigate, useParams } from 'react-router-dom'
 import { ChatFilter } from '../cmps/ChatFilter'
 import { ChatList } from '../cmps/ChatList'
 import { loadChats, setFilterBy } from '../store/actions/chatActions'
-import { loadUser, loadUsers } from '../store/actions/userActions'
+import { loadUser, loadUsers, logout } from '../store/actions/userActions'
 import { ReactComponent as NewChat } from '../assets/imgs/NewChatIcon.svg'
 import { ReactComponent as NoChatLogo } from '../assets/imgs/NoChatLogo.svg'
-import { ReactComponent as LogoutIcon} from '../assets/imgs/LogoutIcon.svg'
+import { ReactComponent as LogoutIcon } from '../assets/imgs/LogoutIcon.svg'
 import { NewChatModal } from '../cmps/NewChatModal'
 
 export function ChatApp() {
@@ -17,6 +17,7 @@ export function ChatApp() {
     const [isNewChatModalOpen, setToggleNewChatModal] = useState(false)
     const dispatch = useDispatch()
     const params = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(loadUsers())
@@ -33,6 +34,11 @@ export function ChatApp() {
         setToggleNewChatModal(!isNewChatModalOpen)
     }
 
+    const onLogout = () => {
+        dispatch(logout())
+        navigate('/')
+    }
+
     if (!currUser) return <div>Loading...</div>
     const userStyle = { backgroundImage: `url(https://robohash.org/${currUser._id})` }
     return (
@@ -45,7 +51,7 @@ export function ChatApp() {
                     </div>
                     <div className='flex align-center'>
                         <NewChat className='new-chat-btn' onClick={toggleNewChatModal} />
-                        <LogoutIcon />
+                        <LogoutIcon className='logout-icon' onClick={onLogout} />
                     </div>
                     {isNewChatModalOpen && <NewChatModal currUserId={currUser._id} toggleNewChatModal={toggleNewChatModal} />}
                 </article>

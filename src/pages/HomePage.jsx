@@ -17,7 +17,7 @@ export function HomePage() {
 
   const onLogin = async (ev) => {
     ev.preventDefault()
-    const user = await userService.isPhoneExist(phoneInputRef.current.value)
+    const user = await userService.getUserByPhone(phoneInputRef.current.value)
     if (!user) return console.log('Fill the inputs')
 
     dispatch(login(user))
@@ -27,7 +27,7 @@ export function HomePage() {
   const onSignup = async (ev, { phone, name, status }) => {
     ev.preventDefault()
     if (!phone || !name || !status) return console.log('Fill the inputs')
-    if (await userService.isPhoneExist(phoneInputRef.current.value)) return console.log('phone already exist')
+    if (await userService.getUserByPhone(phoneInputRef.current.value)) return console.log('phone already exist')
 
     dispatch(signup(phone, name, status))
     navigate('/chat')
