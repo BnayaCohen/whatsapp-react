@@ -18,6 +18,7 @@ export function loadUser() {
     return (dispatch, getState) => {
         const user = userService.getUser()
         dispatch({ type: 'SET_USER', user })
+        return user
     }
 }
 
@@ -29,6 +30,7 @@ export function updateUser(user) {
 
 export function login(user) {
     return async (dispatch) => {
+        user.lastSeen = Date.now()
         userService.login(user)
         dispatch({ type: 'SET_USER', user })
     }

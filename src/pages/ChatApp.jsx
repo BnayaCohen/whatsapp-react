@@ -7,6 +7,7 @@ import { loadChats, setFilterBy } from '../store/actions/chatActions'
 import { loadUser, loadUsers } from '../store/actions/userActions'
 import { ReactComponent as NewChat } from '../assets/imgs/NewChatIcon.svg'
 import { ReactComponent as NoChatLogo } from '../assets/imgs/NoChatLogo.svg'
+import { ReactComponent as LogoutIcon} from '../assets/imgs/LogoutIcon.svg'
 import { NewChatModal } from '../cmps/NewChatModal'
 
 export function ChatApp() {
@@ -42,7 +43,10 @@ export function ChatApp() {
                         <div className="user-img" style={userStyle}></div>
                         <h4 className='user-name'>{currUser.name}</h4>
                     </div>
-                    <NewChat className='new-chat-btn' onClick={toggleNewChatModal} />
+                    <div className='flex align-center'>
+                        <NewChat className='new-chat-btn' onClick={toggleNewChatModal} />
+                        <LogoutIcon />
+                    </div>
                     {isNewChatModalOpen && <NewChatModal currUserId={currUser._id} toggleNewChatModal={toggleNewChatModal} />}
                 </article>
 
@@ -50,7 +54,7 @@ export function ChatApp() {
 
                 {chats?.length > 0 ?
                     <ChatList currUserId={currUser._id} chats={chats} />
-                    : <div className='no-chats'><p>Couldn't find chats...</p></div>}
+                    : <div className='no-chats'><p>No chats...</p></div>}
             </section>
 
             <section className='chat-details'>

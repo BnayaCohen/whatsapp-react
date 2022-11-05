@@ -6,11 +6,11 @@ import { HomePage } from './pages/HomePage';
 import { SignupPage } from './pages/SignupPage.jsx';
 import { ChatApp } from './pages/ChatApp';
 import { ChatDetailsPage } from './pages/ChatDetailsPage';
+import { userService } from './services/userService';
 
 const PrivateRoute = ({ children }) => {
-    const isAdmin = true
-    // return isAdmin ? <Route path={props.path} component={props.component} /> : <Redirect to='/' />
-    return isAdmin ? children : <Navigate to='/' />
+    const currUser = userService.getUser()
+    return currUser ? children : <Navigate to='/' />
 }
 
 function App() {
@@ -24,12 +24,12 @@ function App() {
                         <Route path='/' element={<HomePage />}>
                             <Route path='/signup' element={<SignupPage />} />
                         </Route>
-                        <Route path='/chat' element={<ChatApp />}>
-                            <Route path='/chat/:id' element={
-                                <PrivateRoute>
-                                    <ChatDetailsPage />
-                                </PrivateRoute>
-                            } />
+                        <Route path='/chat' element={
+                            <PrivateRoute>
+                                <ChatApp />
+                            </PrivateRoute>
+                        }>
+                            <Route path='/chat/:id' element={<ChatDetailsPage />} />
                         </Route>
                     </Routes>
                 </main>

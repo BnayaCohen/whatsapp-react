@@ -9,14 +9,13 @@ async function query() {
 
 function getUser() {
   let user = storageService.load(USER_KEY)
-  if (user) return user
-  else user = {
-    _id: '5a566402183d319',
-    phone: '+1 (958) 502-3495',
-    name: 'Dea Folt',
-    status: 'Available now',
-    lastSeen: Date.now(),
+  if (user) {
+    user.lastSeen = Date.now()
+    firebaseService.saveUser(user)
+    return user
   }
+  else user = getUserById('5a566402183d319')
+
   storageService.store(USER_KEY, user)
   return user
 }
