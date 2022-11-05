@@ -1,9 +1,11 @@
 {
   "files": {
-    "main.css": "/whatsapp-react/static/css/main.da62478d.css",
-    "main.js": "/whatsapp-react/static/js/main.fbda0870.js",
+    "main.css": "/whatsapp-react/static/css/main.8cd71341.css",
+    "main.js": "/whatsapp-react/static/js/main.308d8a79.js",
     "static/js/787.6faf361d.chunk.js": "/whatsapp-react/static/js/787.6faf361d.chunk.js",
     "static/media/NoChatLogo.svg": "/whatsapp-react/static/media/NoChatLogo.55f610e89cc3aed0a05baac321a4426f.svg",
+    "static/media/HomeLogo.svg": "/whatsapp-react/static/media/HomeLogo.62cbbcf797ec646ecd29c344bf037c6a.svg",
+    "static/media/LogoutIcon.svg": "/whatsapp-react/static/media/LogoutIcon.f0f142803f279d92925bea1cb4438379.svg",
     "index.html": "/whatsapp-react/index.html",
     "static/media/DoubleVIcon.svg": "/whatsapp-react/static/media/DoubleVIcon.f2f4af14486af8fed7b2072106373a99.svg",
     "static/media/SearchIcon.svg": "/whatsapp-react/static/media/SearchIcon.52c8a5146be1a167339eec0452b7f6cd.svg",
@@ -11,12 +13,12 @@
     "static/media/NewChatIcon.svg": "/whatsapp-react/static/media/NewChatIcon.29937b747f248698348b9d4e16de625a.svg",
     "static/media/sendMsgIcon.svg": "/whatsapp-react/static/media/sendMsgIcon.0bbb61ac73c70232fc50e0b375a65cad.svg",
     "static/media/MsgTail.svg": "/whatsapp-react/static/media/MsgTail.88b39ff4909851b24d61c43af72f55bd.svg",
-    "main.da62478d.css.map": "/whatsapp-react/static/css/main.da62478d.css.map",
-    "main.fbda0870.js.map": "/whatsapp-react/static/js/main.fbda0870.js.map",
+    "main.8cd71341.css.map": "/whatsapp-react/static/css/main.8cd71341.css.map",
+    "main.308d8a79.js.map": "/whatsapp-react/static/js/main.308d8a79.js.map",
     "787.6faf361d.chunk.js.map": "/whatsapp-react/static/js/787.6faf361d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.da62478d.css",
-    "static/js/main.fbda0870.js"
+    "static/css/main.8cd71341.css",
+    "static/js/main.308d8a79.js"
   ]
 }
