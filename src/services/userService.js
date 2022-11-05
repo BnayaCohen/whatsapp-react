@@ -14,8 +14,19 @@ async function getUser() {
     firebaseService.saveUser(user)
     return user
   }
-  else user = await getUserById('5a566402183d319')
+  else {
+    user = await getUserById('5a566402183d319')
+  }
 
+  storageService.store(USER_KEY, user)
+  return user
+}
+
+async function setDemoUser() {
+  const user = await getUserById('5a566402183d319')
+  user.lastSeen = Date.now()
+
+  firebaseService.saveUser(user)
   storageService.store(USER_KEY, user)
   return user
 }
@@ -58,6 +69,7 @@ function logout() {
 export const userService = {
   query,
   getUser,
+  setDemoUser,
   getUserById,
   getUserByPhone,
   removeUser,

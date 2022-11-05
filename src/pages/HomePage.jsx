@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { userService } from '../services/userService'
-import { loadUser, login, signup } from '../store/actions/userActions'
+import { loadUser, login, setDemo, signup } from '../store/actions/userActions'
 import { ReactComponent as HomeLogo } from '../assets/imgs/HomeLogo.svg'
 
 export function HomePage() {
@@ -33,6 +33,11 @@ export function HomePage() {
     navigate('/chat')
   }
 
+  const onStartDemo =  () => {
+    dispatch(setDemo())
+    navigate('/chat')
+  }
+
   return (
     <section className='home-page flex column auto-center'>
 
@@ -46,7 +51,7 @@ export function HomePage() {
       <button className='btn' onClick={onLogin}>Log In</button>
       <div className='text-center'>
         <button className='btn' onClick={() => navigate('/signup')}>Sign Up</button>
-        <button className='btn start-demo-btn' onClick={() => navigate('/chat')}>Start Demo</button>
+        <button className='btn start-demo-btn' onClick={onStartDemo}>Start Demo</button>
       </div>
 
       <Outlet context={onSignup} />

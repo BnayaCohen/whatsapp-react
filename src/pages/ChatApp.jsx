@@ -20,8 +20,8 @@ export function ChatApp() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        dispatch(loadUsers())
         dispatch(loadUser())
+        dispatch(loadUsers())
         dispatch(loadChats())
     }, [])
 

@@ -22,6 +22,14 @@ export function loadUser() {
     }
 }
 
+export function setDemo() {
+    return async (dispatch,) => {
+        const user = await userService.setDemoUser()
+        dispatch({ type: 'SET_USER', user })
+        return user
+    }
+}
+
 export function updateUser(user) {
     return async (dispatch) => {
         dispatch({ type: 'UPDATE_USER', user })
@@ -31,14 +39,13 @@ export function updateUser(user) {
 export function login(user) {
     return async (dispatch) => {
         user.lastSeen = Date.now()
-        console.log(user);
         userService.login(user)
         dispatch({ type: 'SET_USER', user })
     }
 }
 
 export function logout() {
-    return async (dispatch) => {
+    return (dispatch) => {
         userService.logout()
         dispatch({ type: 'SET_USER', user: null })
     }

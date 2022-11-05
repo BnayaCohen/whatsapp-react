@@ -14,7 +14,7 @@ export function ChatPreview({ chat, currUserId }) {
   if (!chat[`isSeenByUser${chatUserIdNum === 2 ? 1 : 2}`]) chatPreviewClass += 'has-new-msgs '
   if (currChat?._id === chat._id) chatPreviewClass += 'selected-chat'
 
-  const chatUserStyle = { backgroundImage: `url(https://robohash.org/${currChatUser._id})` }
+  const chatUserStyle = { backgroundImage: `url(https://robohash.org/${currChatUser?._id})` }
 
   return (
     <article className={chatPreviewClass}>
@@ -22,7 +22,7 @@ export function ChatPreview({ chat, currUserId }) {
         <div className='flex'>
           <div className="user-img" style={chatUserStyle}></div>
           <div>
-            <h3>{currChatUser.name}</h3>
+            <h3>{currChatUser?.name}</h3>
             <p className='last-msg'>{chat.msgs[chat.msgs.length - 1]?.content}</p>
           </div>
         </div>
