@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { addChat } from "../store/actions/chatActions"
+import { UserList } from "./UserList"
 
 export function NewChatModal({ currUserId, toggleNewChatModal }) {
 
@@ -42,17 +43,7 @@ export function NewChatModal({ currUserId, toggleNewChatModal }) {
 
       <input value={phoneInput} onChange={handleChange} type="text" placeholder='Search by phone or name' />
     </form>
-    <article className='user-list'>
-      {usersToShow.map(user =>
-        <div className="user-preview flex align-center" key={user._id} onClick={() => onStartNewChat(user._id)}>
-          <div className="user-img" style={{ backgroundImage: `url(https://robohash.org/${user._id})`, margin: '4px 0' }}></div>
-          <div>
-            <h1>{user.name}</h1>
-            <p className="user-status">{user.status}</p>
-          </div>
-        </div>
-      )}
-    </article>
+    <UserList users={usersToShow} onStartNewChat={onStartNewChat} />
   </section>
   )
 }
