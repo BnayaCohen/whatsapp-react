@@ -61,7 +61,7 @@ export function ChatDetailsPage() {
         <MsgList msgs={currChat.msgs} />
       </section>
       <form className='chat-inputs flex align-center' onSubmit={addMsg}>
-        <input value={msgInput} onChange={handleChange} type="text" placeholder='Write a message' />
+        <input value={msgInput} onChange={handleChange} type="text" placeholder='Type a message' />
         {msgInput ?
           <SendMsgIcon onClick={addMsg} style={{ color: '#54656f' }} />
           :
