@@ -1,0 +1,60 @@
+.new-chat-modal {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  min-width:270px;
+  max-width: 320px;
+  background-color:#fafafa;
+  padding: 10px 10px;
+  border-radius: 6px;
+  box-shadow: 0 0px 2px 0px rgb(11, 19, 25, 0.19);
+  gap: 6px;
+
+  .close-btn {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    cursor: pointer;
+    padding: 2px;
+    color: #667781;
+  }
+
+  h2 {
+    margin-left: 8px;
+    font-size: 1.7rem;
+    font-weight: 300;
+    color: #41525d;
+  }
+
+  input {
+    width: 100%;
+    color: #54656f;
+    margin: 6px 0;
+  }
+
+  svg {
+    cursor: pointer;
+  }
+}
+
+.user-list {
+  height: 80vh;
+  overflow: auto;
+
+  .user-preview {
+    border-top: 1px solid #e9edef;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 3px 2px;
+    gap: 4px;
+
+    &:hover {
+      background-color: #f5f6f6;
+    }
+
+    .user-status {
+      font-size: .7rem;
+      color: #8696a0;
+    }
+  }
+}
