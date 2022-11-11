@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Outlet, useNavigate, useParams } from 'react-router-dom'
 import { ChatFilter } from '../cmps/ChatFilter'
 import { ChatList } from '../cmps/ChatList'
+import { EmptyChatScreen } from '../cmps/EmptyChatScreen'
 import { loadChats, setFilterBy } from '../store/actions/chatActions'
 import { loadUser, loadUsers, logout } from '../store/actions/userActions'
 import { ReactComponent as NewChat } from '../assets/imgs/NewChatIcon.svg'
-import { ReactComponent as NoChatLogo } from '../assets/imgs/NoChatLogo.svg'
 import { ReactComponent as LogoutIcon } from '../assets/imgs/LogoutIcon.svg'
 import { NewChatModal } from '../cmps/NewChatModal'
 
@@ -60,17 +60,12 @@ export function ChatApp() {
 
                 {chats?.length > 0 ?
                     <ChatList currUserId={currUser._id} chats={chats} />
-                    : <div className='no-chats'><p>No chats...</p></div>}
+                    : <div className='no-chats'><p>No chats...</p></div>
+                }
             </section>
 
             <section className='chat-details'>
-                {params.id ? <Outlet /> :
-                    <div className='empty-chat-details flex column align-center justify-center'>
-                        <NoChatLogo className='empty-chat-logo' />
-                        <h1>WusApp Web</h1>
-                        <div className='empty-chat-intro'>You can send messages without keeping the phone connected.</div>
-                    </div>
-                }
+                {params.id ? <Outlet /> : <EmptyChatScreen />}
             </section>
         </div>
     )
