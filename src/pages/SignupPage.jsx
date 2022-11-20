@@ -24,14 +24,17 @@ export const SignupPage = () => {
     <section className='screen' onClick={onCloseModal}>
       <form className='signup-page' onSubmit={(ev) => onSignup(ev, getFormInputs())} onClick={(e) => e.stopPropagation()}>
         <h1 className='signup-title'>Sign Up to WusApp</h1>
+        
         <section className='form-input'>
           <label htmlFor="phone">Phone</label>
           <input ref={phoneRef} name='phone' type='text' />
         </section>
+
         <section className='form-input'>
           <label htmlFor="name">Name</label>
           <input ref={nameRef} name='name' type="text" />
         </section>
+
         <section className='form-input'>
           <label htmlFor="status">Status</label>
           <input ref={statusRef} name='status' type='text' />
