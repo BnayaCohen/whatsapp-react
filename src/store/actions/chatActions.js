@@ -16,14 +16,19 @@ export function loadChats() {
 
 export function loadChat(chatId, userId) {
 
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         try {
-            const currChat = await chatService.getChatById(chatId)
+            const { chats } = getState().chatModule
+            const currChat = chats ?
+                chats.find(chat => chat._id === chatId)
+                : await chatService.getChatById(chatId)
+
             if (currChat.user1Id === userId) {
                 currChat.isSeenByUser1 = true
             } else {
                 currChat.isSeenByUser2 = true
             }
+
             await chatService.saveChat(currChat)
             dispatch({ type: 'UPDATE_CHAT', chat: currChat })
             dispatch({ type: 'SET_CHAT', chat: currChat })
