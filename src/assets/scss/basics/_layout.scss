@@ -18,7 +18,8 @@
     // }
     
     @include for-wide-layout {
-        padding: 20px;
+        // height: 90vh;
+        // padding: 20px;
         min-width: $wide-breakpoint;
     }
 }

@@ -1,6 +1,16 @@
 .chat-app {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
+
+  @include for-wide-layout {
+    height: calc(100vh - 40px);
+    width: calc(100vw - 40px);
+    margin-top: 20px;
+    margin-inline: 20px;
+  }
 
   .chats-header {
     padding: 10px 16px;
@@ -22,7 +32,7 @@
       color: #54656f;
     }
 
-    .logout-icon{
+    .logout-icon {
       cursor: pointer;
       height: 18px;
       margin-left: 16px;

@@ -27,12 +27,10 @@ export function ChatApp() {
     }
 
     if (!currUser) return <div>Loading...</div>
-    const userStyle = { backgroundImage: `url(https://robohash.org/${currUser._id})` }
     return (
         <div className='chat-app flex'>
             <section className='chats-display'>
                 <ChatsHeader currUser={currUser} />
-
                 <ChatFilter onChangeFilter={onChangeFilter} />
 
                 {chats?.length > 0 ?
