@@ -7,11 +7,13 @@ import { ChatList } from '../cmps/ChatList'
 import { EmptyChatScreen } from '../cmps/EmptyChatScreen'
 import { loadChats, setFilterBy } from '../store/actions/chatActions'
 import { loadUser, loadUsers } from '../store/actions/userActions'
+import { useWindowDimensions } from '../customHooks/useWindowDimensions'
 
 export function ChatApp() {
 
     const currUser = useSelector(state => state.userModule.loggedInUser)
     const { chats } = useSelector(state => state.chatModule)
+    const WindowWidth = useWindowDimensions().width
     const dispatch = useDispatch()
     const params = useParams()
 
@@ -38,10 +40,12 @@ export function ChatApp() {
                     : <div className='no-chats'><p>No chats...</p></div>
                 }
             </section>
-
-            <section className='chat-details'>
-                {params.id ? <Outlet /> : <EmptyChatScreen />}
-            </section>
+            {WindowWidth > 540 ?
+                <section className='chat-details'>
+                    {params.id ? <Outlet /> : <EmptyChatScreen />}
+                </section>
+                : null
+            }
         </div>
     )
 }
