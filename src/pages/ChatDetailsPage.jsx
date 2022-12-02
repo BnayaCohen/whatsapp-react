@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadChat, addMessage, removeChat } from '../store/actions/chatActions'
+import { loadChat, addMessage, removeChat, exitChat } from '../store/actions/chatActions'
 import { MsgList } from '../cmps/MsgList'
 import { RecordBtn } from '../cmps/RecordBtn'
 import { ReactComponent as SendMsgIcon } from '../assets/imgs/sendMsgIcon.svg'
+import { ReactComponent as GoBackIcon } from '../assets/imgs/GoBackIcon.svg'
+import { useWindowDimensions } from '../customHooks/useWindowDimensions'
 
 export function ChatDetailsPage() {
 
@@ -12,8 +14,10 @@ export function ChatDetailsPage() {
   const { users } = useSelector((state => state.userModule))
   const currUser = useSelector(state => state.userModule.loggedInUser)
   const { currChat } = useSelector((state => state.chatModule))
+  const WindowWidth = useWindowDimensions().width
   const dispatch = useDispatch()
   const params = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(loadChat(params.id, currUser._id))
@@ -37,6 +41,11 @@ export function ChatDetailsPage() {
     setMsgInput(() => '')
   }
 
+  const goBack = () => {
+    navigate('/chat')
+    dispatch(exitChat())
+  }
+
   const updateText = (txt) => {
     setMsgInput(() => txt)
   }
@@ -49,6 +58,10 @@ export function ChatDetailsPage() {
   return (
     <article className='chat-details flex column space-between'>
       <section className='chat-header flex align-center'>
+        {WindowWidth <= 560 ?
+          <GoBackIcon onClick={goBack} style={{ color: '#008069', marginRight: '2px', cursor: 'pointer' }} />
+          : null
+        }
         <div className="user-img" style={chatUserStyle}></div>
         <div>
           <h4>{chatUser.name}</h4>
@@ -61,7 +74,7 @@ export function ChatDetailsPage() {
       <form className='chat-inputs flex align-center' onSubmit={addMsg}>
         <input value={msgInput} onChange={handleChange} type="text" placeholder='Type a message' />
         {msgInput ?
-          <SendMsgIcon onClick={addMsg} style={{ color: '#54656f' }} />
+          <SendMsgIcon onClick={addMsg} style={{ color: '#54656f', cursor: 'pointer' }} />
           :
           <RecordBtn updateText={updateText} />}
       </form>

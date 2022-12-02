@@ -16,9 +16,9 @@ export function MsgPreview({ msg, lastMsgId }) {
         <p className="msg-time">
           {new Date(msg.sentAt).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }).substring(0, 5)}
         </p>
-        {msgClass === 'outgoing' && <DoubleVIcon className="v-icon" />}
+        {msgClass === 'outgoing' ? <DoubleVIcon className="v-icon" /> : null}
       </div>
-      {(msgSpace && msgClass === 'incoming') && <MsgTail className="msg-tail" />}
+      {(msgSpace && msgClass === 'incoming') ? <MsgTail className="msg-tail" /> : null}
     </article>
   )
 }

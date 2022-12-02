@@ -31,6 +31,7 @@ export function ChatApp() {
     if (!currUser) return <div>Loading...</div>
     return (
         <div className='chat-app flex'>
+            {WindowWidth > 560 || !params.id ?
             <section className='chats-display'>
                 <ChatsHeader currUser={currUser} />
                 <ChatFilter onChangeFilter={onChangeFilter} />
@@ -40,7 +41,10 @@ export function ChatApp() {
                     : <div className='no-chats'><p>No chats...</p></div>
                 }
             </section>
-            {WindowWidth > 540 ?
+            : null
+            }
+
+            {WindowWidth > 560 || params.id ?
                 <section className='chat-details'>
                     {params.id ? <Outlet /> : <EmptyChatScreen />}
                 </section>

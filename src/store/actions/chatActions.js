@@ -38,9 +38,20 @@ export function loadChat(chatId, userId) {
     }
 }
 
+export function exitChat() {
+
+    return async (dispatch) => {
+        try {
+            dispatch({ type: 'SET_CHAT', chat: null })
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
+
 export function removeChat(chatId) {
 
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
         try {
             const chat = await chatService.removeChat(chatId)
             dispatch({ type: 'REMOVE_CHAT', chatId })
