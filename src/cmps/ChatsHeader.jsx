@@ -32,7 +32,7 @@ export function ChatsHeader({ currUser }) {
         <NewChat className='new-chat-btn' onClick={toggleNewChatModal} />
         <LogoutIcon className='logout-icon' onClick={onLogout} />
       </div>
-      {isNewChatModalOpen && <NewChatModal currUserId={currUser._id} toggleNewChatModal={toggleNewChatModal} />}
+      {isNewChatModalOpen ? <NewChatModal currUserId={currUser._id} toggleNewChatModal={toggleNewChatModal} /> : null}
     </article>
   )
 }
